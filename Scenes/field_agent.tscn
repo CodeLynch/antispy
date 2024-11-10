@@ -1,8 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfc5qoourkxhx"]
+[gd_scene load_steps=12 format=3 uid="uid://cfc5qoourkxhx"]
 
 [ext_resource type="Script" path="res://Scripts/npc_move.gd" id="1_jxcbe"]
 [ext_resource type="Texture2D" uid="uid://bek2w4aihyppv" path="res://Assets/atlasSheet.png" id="1_owna0"]
 [ext_resource type="Script" path="res://Scripts/NPC_char.gd" id="2_gw3ix"]
+[ext_resource type="Shader" path="res://Shaders/outline_shader.gdshader" id="2_lolvh"]
+[ext_resource type="Script" path="res://Scripts/highlightable_scene.gd" id="5_l8c2c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_esh0f"]
+resource_local_to_scene = true
+shader = ExtResource("2_lolvh")
+shader_parameter/outline_color = Color(0.878431, 0.121569, 0.247059, 1)
+shader_parameter/is_active = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ig5xv"]
 atlas = ExtResource("1_owna0")
@@ -24,6 +32,9 @@ size = Vector2(17.5, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kbrn"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xkjgj"]
+size = Vector2(7, 10.25)
+
 [node name="field_agent" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 2
@@ -31,6 +42,7 @@ collision_mask = 3
 script = ExtResource("1_jxcbe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_esh0f")
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_1qcjo")
 animation = &"idle"
@@ -56,4 +68,15 @@ scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_1kbrn")
 debug_color = Color(0.985542, 0, 0.332726, 0.42)
 
-[connection signal="body_entered" from="DetectRadius" to="." method="_on_detect_radius_body_entered"]
+[node name="ClickableArea" type="Area2D" parent="."]
+script = ExtResource("5_l8c2c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea"]
+position = Vector2(1, -29.25)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_xkjgj")
+debug_color = Color(0, 0.639053, 0.37034, 0.42)
+
+[connection signal="body_entered" from="DetectRadius" to="NPCChar" method="_on_detect_radius_body_entered"]
+[connection signal="body_exited" from="DetectRadius" to="NPCChar" method="_on_detect_radius_body_exited"]
+[connection signal="body_entered" from="ClickableArea" to="." method="_on_detect_radius_body_entered"]

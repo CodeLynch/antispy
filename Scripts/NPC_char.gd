@@ -17,10 +17,20 @@ class_name NPCChar
 @export var pos: Vector2i :
 	get :  return pos
 	set(value) : pos = value
+var near_player: bool = false
 
-func _init(NPC_NAME, IS_ANXIOUS, HEART_RATE, IS_SPY) -> void:
+'''func _init(NPC_NAME, IS_ANXIOUS, HEART_RATE, IS_SPY) -> void:
 	pos = global_position
 	NPC_name = NPC_NAME
 	is_anxious = IS_ANXIOUS
 	heart_rate = HEART_RATE
 	is_spy = IS_SPY
+'''	
+	
+func _on_detect_radius_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		near_player = true
+
+func _on_detect_radius_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		near_player = false

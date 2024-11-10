@@ -47,6 +47,8 @@ func _process(delta):
 			paused_time = 0
 
 func _physics_process(_delta):
+	if npc_var.near_player:
+		return
 	if navigation_agent.is_navigation_finished() or cancel_move:
 		handle_stop()
 		if (!is_paused):
