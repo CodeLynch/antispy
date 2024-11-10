@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfc5qoourkxhx"]
+
+[ext_resource type="Script" path="res://Scripts/npc_move.gd" id="1_jxcbe"]
+[ext_resource type="Texture2D" uid="uid://bek2w4aihyppv" path="res://Assets/atlasSheet.png" id="1_owna0"]
+[ext_resource type="Script" path="res://Scripts/NPC_char.gd" id="2_gw3ix"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig5xv"]
+atlas = ExtResource("1_owna0")
+region = Rect2(32, 0, 32, 47)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qcjo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig5xv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vphiy"]
+size = Vector2(17.5, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1kbrn"]
+
+[node name="field_agent" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_jxcbe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_1qcjo")
+animation = &"idle"
+
+[node name="NPCChar" type="Node2D" parent="."]
+script = ExtResource("2_gw3ix")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 16.0
+avoidance_layers = 3
+avoidance_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, -8)
+shape = SubResource("RectangleShape2D_vphiy")
+
+[node name="DetectRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
+position = Vector2(0, -7)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_1kbrn")
+debug_color = Color(0.985542, 0, 0.332726, 0.42)
+
+[connection signal="body_entered" from="DetectRadius" to="." method="_on_detect_radius_body_entered"]
