@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c168s8w00bwm"]
+
+[ext_resource type="Texture2D" uid="uid://t4mr7wdg4duq" path="res://Assets/portraits_sheet1.png" id="1_rwpj2"]
+[ext_resource type="Texture2D" uid="uid://crmnpklkfx55d" path="res://Assets/portraits_sheet3.png" id="2_8hely"]
+
+[node name="interrogate_overlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(24, 33)
+texture = ExtResource("1_rwpj2")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(196, 95)
+texture = ExtResource("2_8hely")

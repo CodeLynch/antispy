@@ -5,6 +5,9 @@ extends CharacterBody2D
 @export var pause_chance: float = 50
 @export var pause_time: float = 1.0
 @onready var detect_radius: Area2D = $DetectRadius
+@onready var clickable_area: Area2D = $ClickableArea
+
+signal npc_clicked()
 
 var paused_time: float = 0
 var is_paused: bool = false;
@@ -17,6 +20,7 @@ var is_player_near: bool = false
 
 
 func _ready():
+	clickable_area.npc_clicked.connect(on_npc_click)
 	navigation_agent.path_desired_distance = 4.0
 	navigation_agent.target_desired_distance = 4.0
 	actor_setup.call_deferred()
@@ -34,6 +38,9 @@ func actor_setup():
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
+func on_npc_click():
+	npc_clicked.emit()
+	
 func handle_stop():
 	if(!is_paused):
 		if(rng.randi_range(1, 100) <= pause_chance):
