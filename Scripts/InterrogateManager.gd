@@ -7,12 +7,14 @@ var dialogue = []
 var rng = RandomNumberGenerator.new()
 var is_interrogation: bool = false
 var is_kill: bool = false
+var npc_id: int = -1
 '''
 0 - Field Agent
 1 - Analyst
 2 - R&D Engineer
 3 - Janitor
 '''
+signal kill_npc(id: int)
 
 func _ready() -> void:
 	$interrogate.visible = false
@@ -28,6 +30,7 @@ func start(id:int, name:String, role: int, role_tex: String, is_spy:bool) -> voi
 	dialogue = load_dialogue()
 	var s2dtex = load(role_tex)
 	role_num = role
+	npc_id = id
 	$npc_dialogue/Sprite2D.texture = s2dtex
 	$npc_dialogue/npc_name.text = name
 	$npc_dialogue/npc_role.text = "(" + dialogue[role+1][0]["role"] + ")"
@@ -47,6 +50,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			$exit.disabled = false
 			show_overlay()
 			is_interrogation = false
+		elif is_kill:
+			kill_npc.emit(npc_id)
+			hide_overlay()
+			is_kill = false	
+			is_active = false		
 		else:
 			hide_overlay()
 			is_active = false
@@ -55,14 +63,21 @@ func _on_interrogate_pressed() -> void:
 	$interrogate.disabled = true
 	$kill.disabled = true
 	$exit.disabled = true
-	dialogue = load_dialogue()
 	$rsa_dialogue/dialogue_text.text = dialogue[0][0]["say"]
 	$npc_dialogue.visible = false
 	$rsa_dialogue.visible = true
 	is_interrogation = true;
 
 func _on_kill_pressed() -> void:
-	pass # Replace with function body.
+	$interrogate.disabled = true
+	$kill.disabled = true
+	$exit.disabled = true
+	$rsa_dialogue/dialogue_text.text = dialogue[0][1]["say"]
+	$npc_dialogue.visible = false
+	$rsa_dialogue.visible = true
+	is_kill = true;
+
+	
 
 func _on_exit_pressed() -> void:
 	hide_overlay()

@@ -31,25 +31,6 @@ func _ready():
 	actor_setup.call_deferred()
 	get_random_dir()
 
-func get_random_dir():
-	var possible_vectors: Array = [Vector2i(0,1), Vector2i(0,-1), Vector2i(1,0), Vector2i(-1,0)]
-	var rand_num = rng.randi_range(0, 3)
-	return possible_vectors[rand_num]
-	
-func actor_setup():
-	await get_tree().physics_frame
-	set_movement_target(movement_target_position)
-
-func set_movement_target(movement_target: Vector2):
-	navigation_agent.target_position = movement_target
-
-func on_npc_click(id:int, name:String, role_int: int, role_tex: String, is_spy:bool):
-	npc_clicked.emit(id, name, role_int, role_tex, is_spy)
-	
-func handle_stop():
-	if(!is_paused):
-		if(rng.randi_range(1, 100) <= pause_chance):
-			is_paused = true
 
 func _process(delta):
 	if is_paused:
@@ -78,3 +59,30 @@ func _physics_process(_delta):
 	var col_count = get_slide_collision_count()
 	if col_count > 0:
 		cancel_move = true
+
+func die() -> void:
+	if $NPCChar.is_spy:
+		print("You Killed a spy!")
+	else:
+		print("Oh no...")
+	queue_free()
+	
+func get_random_dir():
+	var possible_vectors: Array = [Vector2i(0,1), Vector2i(0,-1), Vector2i(1,0), Vector2i(-1,0)]
+	var rand_num = rng.randi_range(0, 3)
+	return possible_vectors[rand_num]
+	
+func actor_setup():
+	await get_tree().physics_frame
+	set_movement_target(movement_target_position)
+
+func set_movement_target(movement_target: Vector2):
+	navigation_agent.target_position = movement_target
+
+func on_npc_click(id:int, name:String, role_int: int, role_tex: String, is_spy:bool):
+	npc_clicked.emit(id, name, role_int, role_tex, is_spy)
+	
+func handle_stop():
+	if(!is_paused):
+		if(rng.randi_range(1, 100) <= pause_chance):
+			is_paused = true
