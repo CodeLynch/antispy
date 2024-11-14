@@ -49,6 +49,7 @@ animation = &"idle"
 
 [node name="NPCChar" type="Node2D" parent="."]
 script = ExtResource("2_gw3ix")
+portrait_texture = "res://Assets/portraits_sheet3.png"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
@@ -79,4 +80,3 @@ debug_color = Color(0, 0.639053, 0.37034, 0.42)
 
 [connection signal="body_entered" from="DetectRadius" to="NPCChar" method="_on_detect_radius_body_entered"]
 [connection signal="body_exited" from="DetectRadius" to="NPCChar" method="_on_detect_radius_body_exited"]
-[connection signal="body_entered" from="ClickableArea" to="." method="_on_detect_radius_body_entered"]

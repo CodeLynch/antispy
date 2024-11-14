@@ -1,0 +1,33 @@
+[[
+	{"name": "Reaper", "say":"...Who do you work for?"},
+	{"name": "Reaper", "say":"Die..."}
+],
+[
+	{"role": "Field Agent", "say":"What do you want?"},
+	{"role": "Field Agent", "say":"I am loyal to C.O.D.E"},
+	{"role": "Field Agent", "say":"...C.O.D.E"},
+	{"role": "Field Agent", "say":"Beat it, kid"},
+	{"role": "Field Agent", "say":"My country"}
+],
+[
+	{"role": "Analyst", "say":"Hi, How can I help you?"},
+	{"role": "Analyst", "say":"Umm...C.O.D.E of course"},
+	{"role": "Analyst", "say":"C.O.D.E, why? do you think I'm a spy?"},
+	{"role": "Analyst", "say":"Why are you asking me?"},
+	{"role": "Analyst", "say":"Am I suspicious?"}
+],
+[
+	{"role": "R&D Engineer", "say":"Uhh...Hey?"},
+	{"role": "R&D Engineer", "say":"F.A.N.G...just kidding! C.O.D.E of course!"},
+	{"role": "R&D Engineer", "say":"C.O.D.E, of course...*smiles*"},
+	{"role": "R&D Engineer", "say":"Do you think I'm a F.A.N.G agent?"},
+	{"role": "R&D Engineer", "say":"I think the answer's pretty obvious..."}
+],
+[
+	{"role": "Janitor", "say":"Just doing my job..."},
+	{"role": "Janitor", "say":"Miss, just let me work"},
+	{"role": "Janitor", "say":"To whoever pays me well..."},
+	{"role": "Janitor", "say":"*Grumbles*"},
+	{"role": "Janitor", "say":"I'm not getting paid enough for this..."}
+]
+]

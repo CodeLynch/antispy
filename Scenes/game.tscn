@@ -1,9 +1,15 @@
-[gd_scene load_steps=9 format=4 uid="uid://xiu3ptel3d06"]
+[gd_scene load_steps=15 format=4 uid="uid://xiu3ptel3d06"]
 
+[ext_resource type="Script" path="res://Scenes/level_manager.gd" id="1_6k0cf"]
 [ext_resource type="PackedScene" uid="uid://dvythg0ue3ni5" path="res://Scenes/player.tscn" id="1_ae4rx"]
 [ext_resource type="Script" path="res://Scripts/npc_manager.gd" id="3_igyoi"]
 [ext_resource type="Texture2D" uid="uid://blo5reibc68cy" path="res://Assets/PrototypeTilemap16x16.png" id="3_m00np"]
 [ext_resource type="PackedScene" uid="uid://cfc5qoourkxhx" path="res://Scenes/field_agent.tscn" id="3_p3ir8"]
+[ext_resource type="PackedScene" uid="uid://c168s8w00bwm" path="res://Scenes/interrogate_overlay.tscn" id="5_fhs6t"]
+[ext_resource type="PackedScene" uid="uid://bpd2ksnvpqcst" path="res://Scenes/analyst.tscn" id="6_jyskt"]
+[ext_resource type="PackedScene" uid="uid://c2u1i4wpdc1oh" path="res://Scenes/random_names.tscn" id="6_k6sqg"]
+[ext_resource type="PackedScene" uid="uid://dpow0ql7y1o2y" path="res://Scenes/rd_eng.tscn" id="7_owtgg"]
+[ext_resource type="PackedScene" uid="uid://gs11j6xqhown" path="res://Scenes/janitor.tscn" id="8_etuty"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_r5ml4"]
 vertices = PackedVector2Array(309.906, 60.9688, -59.0391, 60.0234, -59.9531, -165.047, 308.078, -166.938)
@@ -69,6 +75,7 @@ sources/0 = SubResource("TileSetAtlasSource_h8nuv")
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_6k0cf")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-136, 61)
@@ -140,6 +147,11 @@ tile_set = SubResource("TileSet_eeuok")
 y_sort_enabled = true
 position = Vector2(-8, 38)
 script = ExtResource("3_igyoi")
+npc_count = 10
 x_limit = 120
 y_limit = 120
-npcs = Array[PackedScene]([ExtResource("3_p3ir8")])
+npcs = Array[PackedScene]([ExtResource("3_p3ir8"), ExtResource("6_jyskt"), ExtResource("7_owtgg"), ExtResource("8_etuty")])
+
+[node name="RandomNames" parent="npc_spawner" instance=ExtResource("6_k6sqg")]
+
+[node name="InterrogateOverlay" parent="." instance=ExtResource("5_fhs6t")]

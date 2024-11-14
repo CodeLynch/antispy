@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2u1i4wpdc1oh"]
+
+[ext_resource type="Script" path="res://Scripts/random_names.gd" id="1_7qvar"]
+
+[node name="RandomNames" type="Node2D"]
+script = ExtResource("1_7qvar")

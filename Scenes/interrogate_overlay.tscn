@@ -1,21 +1,163 @@
-[gd_scene load_steps=3 format=3 uid="uid://c168s8w00bwm"]
+[gd_scene load_steps=13 format=3 uid="uid://c168s8w00bwm"]
 
-[ext_resource type="Texture2D" uid="uid://t4mr7wdg4duq" path="res://Assets/portraits_sheet1.png" id="1_rwpj2"]
-[ext_resource type="Texture2D" uid="uid://crmnpklkfx55d" path="res://Assets/portraits_sheet3.png" id="2_8hely"]
+[ext_resource type="Script" path="res://Scripts/InterrogateManager.gd" id="1_3uqyo"]
+[ext_resource type="Texture2D" uid="uid://bc270d876b745" path="res://Assets/dialogueTile.png" id="1_6egl6"]
+[ext_resource type="FontFile" uid="uid://dqqb4aa66ub7s" path="res://Assets/m5x7.ttf" id="3_lsxgt"]
+[ext_resource type="Texture2D" uid="uid://crmnpklkfx55d" path="res://Assets/portraits_sheet3.png" id="4_12txo"]
+[ext_resource type="Texture2D" uid="uid://t4mr7wdg4duq" path="res://Assets/portraits_sheet1.png" id="5_r4u3b"]
 
-[node name="interrogate_overlay" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5dnr6"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(24, 33)
-texture = ExtResource("1_rwpj2")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2wsrp"]
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(196, 95)
-texture = ExtResource("2_8hely")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_17fdg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ojig"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pncmt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wj1xk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8cw3h"]
+
+[node name="InterrogateOverlay" type="CanvasLayer"]
+script = ExtResource("1_3uqyo")
+
+[node name="npc_dialogue" type="NinePatchRect" parent="."]
+offset_left = 248.0
+offset_top = 475.0
+offset_right = 931.0
+offset_bottom = 604.0
+texture = ExtResource("1_6egl6")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="npc_name" type="RichTextLabel" parent="npc_dialogue"]
+layout_mode = 0
+offset_left = 13.0
+offset_right = 602.0
+offset_bottom = 51.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("3_lsxgt")
+theme_override_font_sizes/normal_font_size = 48
+text = "Name"
+
+[node name="npc_role" type="RichTextLabel" parent="npc_dialogue"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 32.0
+offset_right = 226.0
+offset_bottom = 60.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("3_lsxgt")
+theme_override_font_sizes/normal_font_size = 32
+text = "(Role)"
+
+[node name="dialogue_text" type="RichTextLabel" parent="npc_dialogue"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 70.0
+offset_right = 473.0
+offset_bottom = 122.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("3_lsxgt")
+theme_override_font_sizes/normal_font_size = 32
+text = "Whatchasayyyyyyyyyy"
+
+[node name="Sprite2D" type="Sprite2D" parent="npc_dialogue"]
+position = Vector2(571, -9)
+scale = Vector2(4.365, 4.365)
+texture = ExtResource("4_12txo")
+
+[node name="rsa_dialogue" type="NinePatchRect" parent="."]
+offset_left = 248.0
+offset_top = 475.0
+offset_right = 931.0
+offset_bottom = 604.0
+texture = ExtResource("1_6egl6")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="name" type="RichTextLabel" parent="rsa_dialogue"]
+layout_mode = 0
+offset_left = 228.0
+offset_right = 303.0
+offset_bottom = 51.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("3_lsxgt")
+theme_override_font_sizes/normal_font_size = 48
+text = "RSA"
+
+[node name="dialogue_text" type="RichTextLabel" parent="rsa_dialogue"]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 38.0
+offset_right = 676.0
+offset_bottom = 123.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("3_lsxgt")
+theme_override_font_sizes/normal_font_size = 32
+text = "This is my threat...."
+
+[node name="Sprite2D" type="Sprite2D" parent="rsa_dialogue"]
+position = Vector2(112, -9)
+scale = Vector2(4.365, 4.365)
+texture = ExtResource("5_r4u3b")
+
+[node name="interrogate" type="Button" parent="."]
+offset_left = 249.0
+offset_top = 605.0
+offset_right = 381.0
+offset_bottom = 639.0
+focus_mode = 0
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_hover_pressed_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_colors/font_hover_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_colors/font_color = Color(0.878431, 0.121569, 0.247059, 1)
+theme_override_fonts/font = ExtResource("3_lsxgt")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_5dnr6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2wsrp")
+text = "Interrogate"
+
+[node name="kill" type="Button" parent="."]
+offset_left = 386.0
+offset_top = 605.0
+offset_right = 457.0
+offset_bottom = 639.0
+focus_mode = 0
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_hover_pressed_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_colors/font_hover_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_colors/font_color = Color(0.878431, 0.121569, 0.247059, 1)
+theme_override_fonts/font = ExtResource("3_lsxgt")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_17fdg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5ojig")
+text = "Kill"
+
+[node name="exit" type="Button" parent="."]
+offset_left = 458.0
+offset_top = 605.0
+offset_right = 529.0
+offset_bottom = 639.0
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_hover_pressed_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_colors/font_hover_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_colors/font_color = Color(0.878431, 0.121569, 0.247059, 1)
+theme_override_fonts/font = ExtResource("3_lsxgt")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pncmt")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_wj1xk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8cw3h")
+text = "Exit"
+
+[connection signal="pressed" from="interrogate" to="." method="_on_interrogate_pressed"]
+[connection signal="pressed" from="kill" to="." method="_on_kill_pressed"]
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]

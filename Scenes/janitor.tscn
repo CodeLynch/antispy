@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://gs11j6xqhown"]
+
+[ext_resource type="Shader" path="res://Shaders/outline_shader.gdshader" id="1_pj7ap"]
+[ext_resource type="Script" path="res://Scripts/npc_move.gd" id="1_t732v"]
+[ext_resource type="Texture2D" uid="uid://bek2w4aihyppv" path="res://Assets/atlasSheet.png" id="2_2u2kl"]
+[ext_resource type="Script" path="res://Scripts/NPC_char.gd" id="3_uf8w7"]
+[ext_resource type="Script" path="res://Scripts/highlightable_scene.gd" id="4_bdlvh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5fu2u"]
+resource_local_to_scene = true
+shader = ExtResource("1_pj7ap")
+shader_parameter/outline_color = Color(0.878431, 0.121569, 0.247059, 1)
+shader_parameter/is_active = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw3p5"]
+atlas = ExtResource("2_2u2kl")
+region = Rect2(128, 0, 32, 47)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kkhv0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw3p5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xgt72"]
+size = Vector2(17.5, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5yg1p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjgua"]
+size = Vector2(6, 12.125)
+
+[node name="janitor" type="CharacterBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_t732v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_5fu2u")
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_kkhv0")
+
+[node name="NPCChar" type="Node2D" parent="."]
+script = ExtResource("3_uf8w7")
+portrait_texture = "res://Assets/portraits_sheet5.png"
+role_no = 3
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 16.0
+avoidance_layers = 3
+avoidance_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, -8)
+shape = SubResource("RectangleShape2D_xgt72")
+
+[node name="DetectRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
+position = Vector2(0, -7)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_5yg1p")
+debug_color = Color(0.985542, 0, 0.332726, 0.42)
+
+[node name="ClickableArea" type="Area2D" parent="."]
+script = ExtResource("4_bdlvh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea"]
+position = Vector2(0, -28)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_fjgua")
+debug_color = Color(0, 0.639053, 0.37034, 0.42)
+
+[connection signal="body_entered" from="DetectRadius" to="NPCChar" method="_on_detect_radius_body_entered"]
+[connection signal="body_exited" from="DetectRadius" to="NPCChar" method="_on_detect_radius_body_exited"]

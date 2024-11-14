@@ -1,5 +1,4 @@
 extends CharacterBody2D
-@onready var npc_var = $NPCChar
 @export var movement_speed: float = 50.0
 @export var movement_len: float = 50.0
 @export var pause_chance: float = 50
@@ -7,7 +6,7 @@ extends CharacterBody2D
 @onready var detect_radius: Area2D = $DetectRadius
 @onready var clickable_area: Area2D = $ClickableArea
 
-signal npc_clicked()
+signal npc_clicked(id:int, name:String, role_int: int, role_tex: String, is_spy:bool)
 
 var paused_time: float = 0
 var is_paused: bool = false;
@@ -15,10 +14,16 @@ var movement_target_position: Vector2i = Vector2i(0,0)
 var rng = RandomNumberGenerator.new()
 var cancel_move: bool = false
 var is_player_near: bool = false
-
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 
+func set_params(id: int, name: String, role_no:int, is_anxious: bool, is_spy: bool):
+	$NPCChar.npc_id = id
+	$NPCChar.NPC_name = name
+	$NPCChar.role_no = role_no
+	$NPCChar.is_anxious = is_anxious
+	$NPCChar.is_spy = is_spy 
+	
 func _ready():
 	clickable_area.npc_clicked.connect(on_npc_click)
 	navigation_agent.path_desired_distance = 4.0
@@ -38,8 +43,8 @@ func actor_setup():
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
-func on_npc_click():
-	npc_clicked.emit()
+func on_npc_click(id:int, name:String, role_int: int, role_tex: String, is_spy:bool):
+	npc_clicked.emit(id, name, role_int, role_tex, is_spy)
 	
 func handle_stop():
 	if(!is_paused):
@@ -54,7 +59,7 @@ func _process(delta):
 			paused_time = 0
 
 func _physics_process(_delta):
-	if npc_var.near_player:
+	if $NPCChar.near_player:
 		return
 	if navigation_agent.is_navigation_finished() or cancel_move:
 		handle_stop()
