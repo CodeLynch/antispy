@@ -14,13 +14,13 @@ void fragment() {
 	alpha += texture(TEXTURE, UV + vec2(size_x,0)).a;
 	alpha += texture(TEXTURE, UV + vec2(-size_x,0)).a;
 	alpha += texture(TEXTURE, UV + vec2(0, size_y)).a;
-	alpha += texture(TEXTURE, UV + vec2(0, -size_y)).a;	
-	if(is_active){	
+	alpha += texture(TEXTURE, UV + vec2(0, -size_y)).a;
+	if(is_active){
 	vec4 final_col = mix(sprite_color, outline_color, clamp(alpha, 0.0, 1.0));
 		COLOR = vec4(final_col.rgb, clamp(abs(alpha) + sprite_color.a, 0.0, 1.0));
 	}
-	
-	
+
+
 }
 
 //void light() {

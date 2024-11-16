@@ -88,7 +88,7 @@ func show_overlay() -> void:
 	$interrogate.visible = true
 	$kill.visible = true
 	$exit.visible = true
-
+	
 func hide_overlay() -> void:
 	$npc_dialogue.visible = false
 	$rsa_dialogue.visible = false

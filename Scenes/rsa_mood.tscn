@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bejkqvk2yr4nh"]
+
+[ext_resource type="Script" path="res://Scripts/rsa_mood.gd" id="1_2lxm7"]
+[ext_resource type="Texture2D" uid="uid://cxvkk7rb5ldtg" path="res://Assets/spy_track1.png" id="2_8btn4"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_2lxm7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(71, 579)
+scale = Vector2(1.79687, 1.79687)
+texture = ExtResource("2_8btn4")

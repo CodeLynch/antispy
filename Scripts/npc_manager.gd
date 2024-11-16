@@ -5,10 +5,16 @@ extends Node2D
 @export var x_limit = 0 
 @export var y_limit = 0
 @export var npcs:Array[PackedScene] = []
+
+var ANXIOUS_PROB = .3
+var SUS_PROB = .4
+
 var npcs_pos:Array[Vector2i] = []
 var rng = RandomNumberGenerator.new() 
 var npc_list
+
 signal npc_clicked(id:int, name:String, role_int: int, role_tex: String, is_spy:bool)
+signal npc_died(is_spy:bool)
 
 func spawn_random():
 	var spy_spawned = 0;
@@ -21,17 +27,21 @@ func spawn_random():
 		else:
 			npc_name = $RandomNames.get_random_name(0)
 		if  spy_spawned < spy_count:
-			npc_ins.set_params(i + 1, npc_name, get_role_no(npc_ins.name), false, true)
+			npc_ins.set_params(i + 1, npc_name, get_role_no(npc_ins.name), false, true, true)
 			spy_spawned += 1
 		else:
 			npc_ins = npc_scene.instantiate()
-			npc_ins.set_params(i + 1, npc_name, get_role_no(npc_ins.name), false, false)
+			npc_ins.set_params(i + 1, npc_name, get_role_no(npc_ins.name), rand_bool(ANXIOUS_PROB), rand_bool(SUS_PROB), false)
+		npc_ins.name = npc_ins.name + "[" + str(i) + "]"
 		npc_ins.npc_clicked.connect(show_overlay)
+		npc_ins.npc_died.connect(was_npc_spy)
 		npc_ins.position = Vector2i(rng.randi_range(-x_limit, x_limit),rng.randi_range(-y_limit, y_limit))
 		add_child(npc_ins)
 		npc_ins.add_to_group("npcs")
 	npc_list = get_tree().get_nodes_in_group("npcs")
+	
 
+	
 func _ready() -> void:
 	spawn_random()
 	$"../InterrogateOverlay".kill_npc.connect(kill_npc)
@@ -42,6 +52,16 @@ func show_overlay(id:int, name:String, role_int: int, role_tex: String, is_spy:b
 func kill_npc(id: int) -> void:
 	var tar = npc_list[id]
 	tar.die()
+
+func was_npc_spy(is_spy:bool):
+	npc_died.emit(is_spy)
+
+func rand_bool(chance:float) -> bool:
+	if rng.randf_range(0, 1) <= chance:
+		return true
+	else:
+		return false
+	 
 
 func get_role_no(role_name: String) -> int:
 	if role_name == "field_agent":

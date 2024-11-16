@@ -5,8 +5,10 @@ extends CharacterBody2D
 @export var pause_time: float = 1.0
 @onready var detect_radius: Area2D = $DetectRadius
 @onready var clickable_area: Area2D = $ClickableArea
+@onready var npc_char: NPCChar = $NPCChar
 
 signal npc_clicked(id:int, name:String, role_int: int, role_tex: String, is_spy:bool)
+signal npc_died(is_spy:bool)
 
 var paused_time: float = 0
 var is_paused: bool = false;
@@ -17,11 +19,12 @@ var is_player_near: bool = false
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 
-func set_params(id: int, name: String, role_no:int, is_anxious: bool, is_spy: bool):
+func set_params(id: int, name: String, role_no:int, is_anxious: bool, is_sus: bool, is_spy: bool):
 	$NPCChar.npc_id = id
 	$NPCChar.NPC_name = name
 	$NPCChar.role_no = role_no
 	$NPCChar.is_anxious = is_anxious
+	$NPCChar.is_sus = is_sus
 	$NPCChar.is_spy = is_spy 
 	
 func _ready():
@@ -61,10 +64,7 @@ func _physics_process(_delta):
 		cancel_move = true
 
 func die() -> void:
-	if $NPCChar.is_spy:
-		print("You Killed a spy!")
-	else:
-		print("Oh no...")
+	npc_died.emit(npc_char.is_spy)
 	queue_free()
 	
 func get_random_dir():

@@ -12,8 +12,11 @@ Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
 - Dialogue Overlay ✅
 - Interrogation Mechanic ⌛
 - Gameplay Loop ⌛
-    - Kill Spy ⌛
-    - Level Timer ⌛
+    - Level Timer ✅
+    - Spy hints ⌛
+        - Radar system ✅
+    - Kill Spy ✅
+    - Three Kill attempts ✅
     
 ## To-dos:
 - Title Screen ❗
@@ -21,11 +24,9 @@ Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
 - Player Tutorial ❗
 - Gameplay Loop ❗
     - Spy hints ❗
-        - Radar system ❗
         - Different role behaviours ❗
         - Heart rates ❗
-    - Three Kill attempts ❗
-    - Win Condition ❗
+    - Level End Overlay ❗
 - Multiple Levels ❗
 - Tilemap for Levels ❗
 - Animations ❗

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://xiu3ptel3d06"]
+[gd_scene load_steps=20 format=4 uid="uid://xiu3ptel3d06"]
 
 [ext_resource type="Script" path="res://Scenes/level_manager.gd" id="1_6k0cf"]
 [ext_resource type="PackedScene" uid="uid://dvythg0ue3ni5" path="res://Scenes/player.tscn" id="1_ae4rx"]
@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://gs11j6xqhown" path="res://Scenes/janitor.tscn" id="8_etuty"]
 [ext_resource type="FontFile" uid="uid://dqqb4aa66ub7s" path="res://Assets/m5x7.ttf" id="11_h1lvl"]
 [ext_resource type="Script" path="res://Scripts/level_timer.gd" id="11_v3xiw"]
+[ext_resource type="PackedScene" uid="uid://bejkqvk2yr4nh" path="res://Scenes/rsa_mood.tscn" id="13_jjgvl"]
+[ext_resource type="PackedScene" uid="uid://bm3ppmfcx54b6" path="res://Scenes/AttemptCounter.tscn" id="14_m00hs"]
+[ext_resource type="Script" path="res://Scripts/attempt_counter.gd" id="15_uhpfc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_r5ml4"]
 vertices = PackedVector2Array(309.906, 60.9688, -59.0391, 60.0234, -59.9531, -165.047, 308.078, -166.938)
@@ -162,7 +165,7 @@ npcs = Array[PackedScene]([ExtResource("3_p3ir8"), ExtResource("6_jyskt"), ExtRe
 
 [node name="TimerGroup" type="Node2D" parent="LevelTimer"]
 script = ExtResource("11_v3xiw")
-time = 120000.0
+time = 60000.0
 
 [node name="lbl_min" type="Label" parent="LevelTimer/TimerGroup"]
 offset_left = 516.0
@@ -183,3 +186,8 @@ theme_override_fonts/font = ExtResource("11_h1lvl")
 theme_override_font_sizes/font_size = 64
 text = "00"
 horizontal_alignment = 2
+
+[node name="MoodManager" parent="." instance=ExtResource("13_jjgvl")]
+
+[node name="AttemptsCounter" parent="." instance=ExtResource("14_m00hs")]
+script = ExtResource("15_uhpfc")

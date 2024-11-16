@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bm3ppmfcx54b6"]
+
+[ext_resource type="Texture2D" uid="uid://b5frljj0ktxmx" path="res://Assets/knife_sprite.png" id="1_akk8j"]
+[ext_resource type="Script" path="res://Scripts/attempts_sprite_counter.gd" id="1_cpe2v"]
+
+[node name="AttemptsCounter" type="CanvasLayer"]
+
+[node name="Attempts" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_cpe2v")
+
+[node name="TextureRect" type="TextureRect" parent="Attempts"]
+clip_contents = true
+layout_direction = 2
+layout_mode = 0
+offset_bottom = 16.0
+scale = Vector2(3, 3)
+texture = ExtResource("1_akk8j")
+expand_mode = 1
+stretch_mode = 1
