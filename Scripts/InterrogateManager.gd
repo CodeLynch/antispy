@@ -2,12 +2,16 @@ extends CanvasLayer
 
 @export_file("*.json") var d_src 
 @export var is_active = false
+
+var SUCCESS_PROB = .7
+
 var role_num = -1
 var dialogue = []
 var rng = RandomNumberGenerator.new()
 var is_interrogation: bool = false
 var is_kill: bool = false
 var npc_id: int = -1
+var io_is_spy: bool = false
 '''
 0 - Field Agent
 1 - Analyst
@@ -31,6 +35,7 @@ func start(id:int, name:String, role: int, role_tex: String, is_spy:bool) -> voi
 	var s2dtex = load(role_tex)
 	role_num = role
 	npc_id = id
+	io_is_spy = is_spy
 	$npc_dialogue/Sprite2D.texture = s2dtex
 	$npc_dialogue/npc_name.text = name
 	$npc_dialogue/npc_role.text = "(" + dialogue[role+1][0]["role"] + ")"
@@ -48,6 +53,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			$npc_dialogue/dialogue_text.text = dialogue[role_num + 1][rng.randi_range(1,4)]["say"]
 			$kill.disabled = false
 			$exit.disabled = false
+			if io_is_spy and rng.randf_range(0,1) >= SUCCESS_PROB:
+				$npc_dialogue/heart_rate.text = "[color=#e01f3f]HIGH[/color]"
+			else:
+				$npc_dialogue/heart_rate.text = "[color=#271d2c]NORMAL[/color]"
 			show_overlay()
 			is_interrogation = false
 		elif is_kill:
@@ -85,6 +94,7 @@ func _on_exit_pressed() -> void:
 
 func show_overlay() -> void:
 	$npc_dialogue.visible = true
+	$npc_dialogue/AnimatedSprite2D.play()
 	$interrogate.visible = true
 	$kill.visible = true
 	$exit.visible = true

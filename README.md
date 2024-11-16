@@ -15,17 +15,18 @@ Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
     - Level Timer ✅
     - Spy hints ⌛
         - Radar system ✅
+        - Heart rates ✅
     - Kill Spy ✅
     - Three Kill attempts ✅
     
 ## To-dos:
 - Title Screen ❗
 - Main Menu ❗
-- Player Tutorial ❗
+- Player Guide Modal❗
 - Gameplay Loop ❗
     - Spy hints ❗
-        - Different role behaviours ❗
-        - Heart rates ❗
+        - Anxious behaviour ❗
+    - Cipher Intel (give role of spy) ❗
     - Level End Overlay ❗
 - Multiple Levels ❗
 - Tilemap for Levels ❗

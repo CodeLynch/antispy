@@ -165,7 +165,7 @@ npcs = Array[PackedScene]([ExtResource("3_p3ir8"), ExtResource("6_jyskt"), ExtRe
 
 [node name="TimerGroup" type="Node2D" parent="LevelTimer"]
 script = ExtResource("11_v3xiw")
-time = 60000.0
+time = 60.0
 
 [node name="lbl_min" type="Label" parent="LevelTimer/TimerGroup"]
 offset_left = 516.0
