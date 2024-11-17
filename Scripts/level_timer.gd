@@ -1,13 +1,15 @@
 extends Node2D
 
 @export var time: float = 0
-var mins: float = 0
-var secs: float = 0
+var mins: int = 0
+var secs: int = 0
+
+signal timer_done()
 
 func _process(delta: float) -> void:
 	time -= delta
-	secs = time
-	mins = time / 60 
+	secs = fmod(time, 60)
+	mins = fmod(time, 3600) / 60
 	$lbl_min.text = "%02d:" % mins
 	$lbl_sec.text = "%02d" % secs
 	if time <= 0:
@@ -16,3 +18,4 @@ func _process(delta: float) -> void:
 
 func stop_timer() -> void:
 	set_process(false)
+	timer_done.emit()

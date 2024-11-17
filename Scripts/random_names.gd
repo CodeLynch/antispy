@@ -14,7 +14,7 @@ var ffirst_names:Array[String] = [
 	"Debra", "Stephanie", "Domino", "Octopussy", "Natalie",
 	"Marie", "Gwen", "Victoria", "Felicia", "Sophia",
 	"Karen", "Kaye", "Isobel", "Chealsea", "Francheska",
-	"Bayley", "Rhea"
+	"Bayley", "Rhea", "Kissy"
 	]
 var last_names:Array[String] = [
 	"Doe", "Bond", "Palmer", "Smith", "Park",
@@ -22,7 +22,8 @@ var last_names:Array[String] = [
 	"Schaffer", "Hudson", "Sullivan", "Harper",
 	"Rivers", "Richards", "Turner", "Buckley", "Moss",
 	"Morrison", "Motley", "Greenwood", "Ward", "Gibbs",
-	"Rhodes", "Johnson", "Parker", "Edwards", "Rogers"
+	"Rhodes", "Johnson", "Parker", "Edwards", "Rogers",
+	"Galore", "Goodhead", "Onatopp"
 ]
 
 func get_random_name(gender: int) -> String:

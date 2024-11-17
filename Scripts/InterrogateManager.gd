@@ -100,6 +100,7 @@ func show_overlay() -> void:
 	$exit.visible = true
 	
 func hide_overlay() -> void:
+	$npc_dialogue/heart_rate.text = "[color=#271d2c]NORMAL[/color]"
 	$npc_dialogue.visible = false
 	$rsa_dialogue.visible = false
 	$interrogate.disabled = false

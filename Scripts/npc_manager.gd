@@ -7,14 +7,18 @@ extends Node2D
 @export var npcs:Array[PackedScene] = []
 
 var ANXIOUS_PROB = .3
-var SUS_PROB = .4
+var SUS_PROB = .3
 
 var npcs_pos:Array[Vector2i] = []
 var rng = RandomNumberGenerator.new() 
 var npc_list
+var spy_list:Array[String] = []
+var active_spy_cnt: int = 0
 
 signal npc_clicked(id:int, name:String, role_int: int, role_tex: String, is_spy:bool)
 signal npc_died(is_spy:bool)
+signal update_spy_count(new_count:int)
+signal spy_cleared()
 
 func spawn_random():
 	var spy_spawned = 0;
@@ -27,7 +31,8 @@ func spawn_random():
 		else:
 			npc_name = $RandomNames.get_random_name(0)
 		if  spy_spawned < spy_count:
-			npc_ins.set_params(i + 1, npc_name, get_role_no(npc_ins.name), false, true, true)
+			npc_ins.set_params(i + 1, npc_name, get_role_no(npc_ins.name), true, true, true)
+			spy_list.append(npc_name + "," + npc_ins.name)
 			spy_spawned += 1
 		else:
 			npc_ins = npc_scene.instantiate()
@@ -39,7 +44,7 @@ func spawn_random():
 		add_child(npc_ins)
 		npc_ins.add_to_group("npcs")
 	npc_list = get_tree().get_nodes_in_group("npcs")
-	
+	active_spy_cnt = spy_count
 
 	
 func _ready() -> void:
@@ -54,6 +59,11 @@ func kill_npc(id: int) -> void:
 	tar.die()
 
 func was_npc_spy(is_spy:bool):
+	if is_spy:
+		active_spy_cnt -= 1
+		update_spy_count.emit(active_spy_cnt)
+		if active_spy_cnt <= 0:
+			spy_cleared.emit()
 	npc_died.emit(is_spy)
 
 func rand_bool(chance:float) -> bool:

@@ -1,6 +1,6 @@
-[gd_scene load_steps=20 format=4 uid="uid://xiu3ptel3d06"]
+[gd_scene load_steps=25 format=4 uid="uid://xiu3ptel3d06"]
 
-[ext_resource type="Script" path="res://Scenes/level_manager.gd" id="1_6k0cf"]
+[ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_6k0cf"]
 [ext_resource type="PackedScene" uid="uid://dvythg0ue3ni5" path="res://Scenes/player.tscn" id="1_ae4rx"]
 [ext_resource type="Script" path="res://Scripts/npc_manager.gd" id="3_igyoi"]
 [ext_resource type="Texture2D" uid="uid://blo5reibc68cy" path="res://Assets/PrototypeTilemap16x16.png" id="3_m00np"]
@@ -13,13 +13,16 @@
 [ext_resource type="FontFile" uid="uid://dqqb4aa66ub7s" path="res://Assets/m5x7.ttf" id="11_h1lvl"]
 [ext_resource type="Script" path="res://Scripts/level_timer.gd" id="11_v3xiw"]
 [ext_resource type="PackedScene" uid="uid://bejkqvk2yr4nh" path="res://Scenes/rsa_mood.tscn" id="13_jjgvl"]
+[ext_resource type="Script" path="res://Scripts/active_spy_count.gd" id="13_obtt3"]
 [ext_resource type="PackedScene" uid="uid://bm3ppmfcx54b6" path="res://Scenes/AttemptCounter.tscn" id="14_m00hs"]
 [ext_resource type="Script" path="res://Scripts/attempt_counter.gd" id="15_uhpfc"]
+[ext_resource type="Texture2D" uid="uid://bc270d876b745" path="res://Assets/dialogueTile.png" id="17_5pt3y"]
+[ext_resource type="Script" path="res://Scripts/level_end.gd" id="17_cg76u"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_r5ml4"]
-vertices = PackedVector2Array(309.906, 60.9688, -59.0391, 60.0234, -59.9531, -165.047, 308.078, -166.938)
+vertices = PackedVector2Array(335.188, -180.078, 340.789, 103.969, -82.0313, 103.023, -82.9609, -183.898)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(312, -170, -70, -175, -69, 70, 320, 71)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(345, -190, -93, -194, -92, 113, 351, 114)])
 cell_size = 3.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4ru66"]
@@ -78,6 +81,10 @@ texture = ExtResource("3_m00np")
 [sub_resource type="TileSet" id="TileSet_eeuok"]
 sources/0 = SubResource("TileSetAtlasSource_h8nuv")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_blppn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lrv8d"]
+
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_6k0cf")
@@ -85,6 +92,7 @@ script = ExtResource("1_6k0cf")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-136, 61)
 navigation_polygon = SubResource("NavigationPolygon_r5ml4")
+navigation_layers = 3
 
 [node name="Player" parent="." instance=ExtResource("1_ae4rx")]
 y_sort_enabled = true
@@ -152,7 +160,7 @@ tile_set = SubResource("TileSet_eeuok")
 y_sort_enabled = true
 position = Vector2(-8, 38)
 script = ExtResource("3_igyoi")
-npc_count = 10
+npc_count = 1
 x_limit = 120
 y_limit = 120
 npcs = Array[PackedScene]([ExtResource("3_p3ir8"), ExtResource("6_jyskt"), ExtResource("7_owtgg"), ExtResource("8_etuty")])
@@ -165,7 +173,7 @@ npcs = Array[PackedScene]([ExtResource("3_p3ir8"), ExtResource("6_jyskt"), ExtRe
 
 [node name="TimerGroup" type="Node2D" parent="LevelTimer"]
 script = ExtResource("11_v3xiw")
-time = 60.0
+time = 120.0
 
 [node name="lbl_min" type="Label" parent="LevelTimer/TimerGroup"]
 offset_left = 516.0
@@ -187,7 +195,137 @@ theme_override_font_sizes/font_size = 64
 text = "00"
 horizontal_alignment = 2
 
+[node name="SpyCount" type="Node2D" parent="LevelTimer"]
+script = ExtResource("13_obtt3")
+
+[node name="lbl_spy_remain" type="RichTextLabel" parent="LevelTimer/SpyCount"]
+offset_left = 736.0
+offset_top = 7.0
+offset_right = 1141.0
+offset_bottom = 47.0
+theme_override_colors/default_color = Color(0.878431, 0.121569, 0.247059, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[right]X Spies Remaining[/right]"
+scroll_active = false
+
 [node name="MoodManager" parent="." instance=ExtResource("13_jjgvl")]
 
 [node name="AttemptsCounter" parent="." instance=ExtResource("14_m00hs")]
 script = ExtResource("15_uhpfc")
+
+[node name="LevelDoneOverlay" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("17_cg76u")
+
+[node name="LevelDoneBox" type="NinePatchRect" parent="LevelDoneOverlay"]
+offset_left = 248.0
+offset_top = 103.0
+offset_right = 929.0
+offset_bottom = 516.0
+texture = ExtResource("17_5pt3y")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="header" type="RichTextLabel" parent="LevelDoneOverlay/LevelDoneBox"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 46.0
+offset_right = 647.0
+offset_bottom = 125.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]MISSION COMPLETE/FAILED[/center]"
+
+[node name="body" type="RichTextLabel" parent="LevelDoneOverlay/LevelDoneBox"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 108.0
+offset_right = 648.0
+offset_bottom = 193.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[center]Good job, agent!/ We'll get 'em next time...[/center]"
+
+[node name="score" type="RichTextLabel" parent="LevelDoneOverlay/LevelDoneBox"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 273.0
+offset_right = 642.0
+offset_bottom = 323.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "SCORE: 15000"
+autowrap_mode = 2
+
+[node name="t_left" type="RichTextLabel" parent="LevelDoneOverlay/LevelDoneBox"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 190.0
+offset_right = 642.0
+offset_bottom = 240.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "TIME LEFT: 0 * 1000 = 0"
+autowrap_mode = 2
+
+[node name="a_left" type="RichTextLabel" parent="LevelDoneOverlay/LevelDoneBox"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 229.0
+offset_right = 643.0
+offset_bottom = 279.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "CIVILIANS SPARED: 3 * 5000 = 15000"
+autowrap_mode = 2
+
+[node name="retry" type="Button" parent="LevelDoneOverlay/LevelDoneBox"]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 313.0
+offset_right = 209.0
+offset_bottom = 372.0
+focus_mode = 0
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_hover_pressed_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_colors/font_hover_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_colors/font_color = Color(0.878431, 0.121569, 0.247059, 1)
+theme_override_fonts/font = ExtResource("11_h1lvl")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_blppn")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lrv8d")
+text = "Retry"
+
+[node name="main_menu" type="Button" parent="LevelDoneOverlay/LevelDoneBox"]
+layout_mode = 0
+offset_left = 389.0
+offset_top = 313.0
+offset_right = 613.0
+offset_bottom = 372.0
+focus_mode = 0
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_hover_pressed_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_colors/font_hover_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_colors/font_color = Color(0.878431, 0.121569, 0.247059, 1)
+theme_override_fonts/font = ExtResource("11_h1lvl")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_blppn")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lrv8d")
+text = "Main Menu"
+
+[connection signal="pressed" from="LevelDoneOverlay/LevelDoneBox/retry" to="LevelDoneOverlay" method="_on_retry_pressed"]

@@ -50,10 +50,12 @@ portrait_texture = "res://Assets/portraits_sheet5.png"
 role_no = 3
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 3
 avoidance_enabled = true
-radius = 16.0
+radius = 32.0
 avoidance_layers = 3
 avoidance_mask = 3
+debug_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.25, -8)
@@ -79,5 +81,6 @@ scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_fjgua")
 debug_color = Color(0, 0.639053, 0.37034, 0.42)
 
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="body_entered" from="DetectRadius" to="NPCChar" method="_on_detect_radius_body_entered"]
 [connection signal="body_exited" from="DetectRadius" to="NPCChar" method="_on_detect_radius_body_exited"]

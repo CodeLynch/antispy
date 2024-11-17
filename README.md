@@ -7,27 +7,27 @@ Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
 - Initial Character Sprites ✅
 - Character Portraits ✅
 - Character Movement w/ Cam ✅
-- Random NPC Movement ✅
+- Random NPC Movement ⌛
 - Random NPC Generation w/ stats (Name, role, etc.) ✅
 - Dialogue Overlay ✅
-- Interrogation Mechanic ⌛
+- Interrogation Mechanic ✅
 - Gameplay Loop ⌛
     - Level Timer ✅
     - Spy hints ⌛
         - Radar system ✅
         - Heart rates ✅
+        - Anxious behaviour ⌛
     - Kill Spy ✅
     - Three Kill attempts ✅
+    - Level End Overlay ✅
     
 ## To-dos:
 - Title Screen ❗
 - Main Menu ❗
 - Player Guide Modal❗
 - Gameplay Loop ❗
-    - Spy hints ❗
-        - Anxious behaviour ❗
+    - Mark suspects ❗
     - Cipher Intel (give role of spy) ❗
-    - Level End Overlay ❗
 - Multiple Levels ❗
 - Tilemap for Levels ❗
 - Animations ❗
