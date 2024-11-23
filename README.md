@@ -13,10 +13,10 @@ Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
 - Interrogation Mechanic ✅
 - Gameplay Loop ⌛
     - Level Timer ✅
-    - Spy hints ⌛
+    - Spy hints ✅
         - Radar system ✅
         - Heart rates ✅
-        - Anxious behaviour ⌛
+        - Anxious behaviour ✅
     - Kill Spy ✅
     - Three Kill attempts ✅
     - Level End Overlay ✅
