@@ -19,6 +19,7 @@ var io_is_spy: bool = false
 3 - Janitor
 '''
 signal kill_npc(id: int)
+signal close_overlay(id: int)
 
 func _ready() -> void:
 	$interrogate.visible = false
@@ -65,8 +66,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			is_kill = false	
 			is_active = false		
 		else:
-			hide_overlay()
-			is_active = false
+			if(is_active):
+				hide_overlay()
+				is_active = false
 
 func _on_interrogate_pressed() -> void:
 	$interrogate.disabled = true
@@ -109,3 +111,4 @@ func hide_overlay() -> void:
 	$interrogate.visible = false
 	$kill.visible = false
 	$exit.visible = false
+	close_overlay.emit(npc_id)

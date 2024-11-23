@@ -19,6 +19,7 @@ signal npc_clicked(id:int, name:String, role_int: int, role_tex: String, is_spy:
 signal npc_died(is_spy:bool)
 signal update_spy_count(new_count:int)
 signal spy_cleared()
+signal close_overlay(id:int)
 
 func spawn_random():
 	var spy_spawned = 0;
@@ -50,13 +51,18 @@ func spawn_random():
 func _ready() -> void:
 	spawn_random()
 	$"../InterrogateOverlay".kill_npc.connect(kill_npc)
-
+	$"../InterrogateOverlay".close_overlay.connect(stop_talk)
+	
 func show_overlay(id:int, name:String, role_int: int, role_tex: String, is_spy:bool) -> void:
 	$"../InterrogateOverlay".start(id, name, role_int, role_tex, is_spy)
 
 func kill_npc(id: int) -> void:
 	var tar = npc_list[id]
 	tar.die()
+	
+func stop_talk(id: int) -> void:
+	var tar = npc_list[id]
+	tar.toggle_talk()
 
 func was_npc_spy(is_spy:bool):
 	if is_spy:

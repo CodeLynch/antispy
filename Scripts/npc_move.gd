@@ -59,33 +59,37 @@ func _process(delta):
 			paused_time = 0
 
 func _physics_process(_delta):
-	if $NPCChar.near_player:
+	if $NPCChar.is_talking:
+		change_anim_from_vec(Vector2i(0,0))
+		return
+	if $NPCChar.is_anxious:
+		if $NPCChar.near_player:
+			var x_val = 0
+			var y_val = 0
+			if player.global_position.x < global_position.x:
+				x_val = 1
+			elif player.global_position.x > global_position.x:
+				x_val = -1
+			if player.global_position.y < global_position.y:
+				y_val = 1
+			elif player.global_position.y > global_position.y:
+				y_val = -1
+			movement_target_position = global_position + Vector2i(x_val,y_val) * movement_len
+			set_movement_target(movement_target_position)
+			
+			
+	
+	if $NPCChar.near_player and !$NPCChar.is_anxious:
 		change_anim_from_vec(Vector2i(0,0))
 		return
 		
-	#if $NPCChar.is_anxious :
-		#if $NPCChar.near_player and !escape:
-			#cancel_move = true
-			#escape = true
-		#elif !$NPCChar.near_player:
-			#cancel_move = false
-			#escape = false
-			#
 	if navigation_agent.is_navigation_finished() or cancel_move:
-		#if escape:
-			#movement_speed *= 1.5
-			#movement_target_position = (global_position + $NPCChar.esc_vector * movement_len)
-			#set_movement_target(movement_target_position)
-			#cancel_move = false
-#else:
-		movement_speed = orig_movement_speed
 		handle_stop()
 		if (!is_paused):
 			var mov_vec = get_random_dir()
 			movement_target_position = global_position + mov_vec * movement_len
 			set_movement_target(movement_target_position)
 			cancel_move = false
-					
 		return
 
 	var current_agent_position: Vector2 = global_position
@@ -101,6 +105,9 @@ func _physics_process(_delta):
 func die() -> void:
 	npc_died.emit(npc_char.is_spy)
 	queue_free()
+
+func toggle_talk() -> void:
+	npc_char.is_talking = !npc_char.is_talking
 	
 func get_random_dir():
 	var possible_vectors: Array = [Vector2i(0,1), Vector2i(0,-1), Vector2i(1,0), Vector2i(-1,0)]
@@ -139,6 +146,7 @@ func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
 func on_npc_click(id:int, name:String, role_int: int, role_tex: String, is_spy:bool):
+	npc_char.is_talking = true
 	npc_clicked.emit(id, name, role_int, role_tex, is_spy)
 	
 func handle_stop():
