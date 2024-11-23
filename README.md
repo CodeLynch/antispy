@@ -7,7 +7,7 @@ Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
 - Initial Character Sprites ✅
 - Character Portraits ✅
 - Character Movement w/ Cam ✅
-- Random NPC Movement ⌛
+- Random NPC Movement ✅
 - Random NPC Generation w/ stats (Name, role, etc.) ✅
 - Dialogue Overlay ✅
 - Interrogation Mechanic ✅
@@ -20,10 +20,12 @@ Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
     - Kill Spy ✅
     - Three Kill attempts ✅
     - Level End Overlay ✅
-    
+- Animations ⌛
+    - Characters ⌛
+
 ## To-dos:
 - Title Screen ❗
-- Main Menu ❗
+- Level Select ❗
 - Player Guide Modal❗
 - Gameplay Loop ❗
     - Mark suspects ❗
@@ -31,8 +33,8 @@ Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
 - Multiple Levels ❗
 - Tilemap for Levels ❗
 - Animations ❗
-    - Characters ❗
-    - UI ❗
+    - UI (unlikely)❗
+- Music ❗
 
-## Bonus
-- Cheat Codes ❗
+## Bonus 
+- Cheat Codes (unlikely) ❗ 
