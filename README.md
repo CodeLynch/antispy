@@ -11,7 +11,7 @@ Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
 - Random NPC Generation w/ stats (Name, role, etc.) ✅
 - Dialogue Overlay ✅
 - Interrogation Mechanic ✅
-- Gameplay Loop ⌛
+- Gameplay Loop ✅
     - Level Timer ✅
     - Spy hints ✅
         - Radar system ✅
@@ -21,16 +21,15 @@ Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
     - Kill Spy ✅
     - Three Kill attempts ✅
     - Level End Overlay ✅
+    - Cipher Intel (give role of spy) ✅
 - Tilemap for Levels ✅
-- Animations ⌛
-    - Characters ⌛
+- Player Guide Modal✅
+- Animations ✅
+    - Characters (mostly) ✅
 
 ## To-dos:
 - Title Screen ❗
 - Level Select ❗
-- Player Guide Modal❗
-- Gameplay Loop ❗
-    - Cipher Intel (give role of spy) ❗
 - Multiple Levels ❗
 - Animations ❗
     - UI (unlikely)❗
