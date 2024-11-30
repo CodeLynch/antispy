@@ -50,7 +50,6 @@ func _ready():
 	orig_movement_speed = movement_speed
 	
 
-
 func _process(delta):
 	if is_paused:
 		paused_time += delta
@@ -104,11 +103,13 @@ func _physics_process(_delta):
 
 func die() -> void:
 	npc_died.emit(npc_char.is_spy)
+	npc_char.is_dead = true
 	queue_free()
 
 func toggle_talk() -> void:
 	npc_char.is_talking = !npc_char.is_talking
 	
+
 func get_random_dir():
 	var possible_vectors: Array = [Vector2i(0,1), Vector2i(0,-1), Vector2i(1,0), Vector2i(-1,0)]
 	var rand_num = rng.randi_range(0, 3)
@@ -149,13 +150,14 @@ func on_npc_click(id:int, name:String, role_int: int, role_tex: String, is_spy:b
 	npc_char.is_talking = true
 	npc_clicked.emit(id, name, role_int, role_tex, is_spy)
 	
+func toggle_mark()->void:
+	animated_sprite_2d.material.set_shader_parameter("is_marked", !animated_sprite_2d.material.get_shader_parameter("is_marked"))
+
 func handle_stop():
 	if(!is_paused):
 		if(rng.randi_range(1, 100) <= pause_chance):
 			is_paused = true
 			change_anim_from_vec(Vector2i(0,0))
-			
-
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity

@@ -7,9 +7,10 @@ func pop_up(is_win:bool, score:int, attempts_left: int, time_left:int) -> void:
 	if is_win:
 		$LevelDoneBox/header.text = "[center]MISSION COMPLETE[/center]"
 		$LevelDoneBox/body.text = "[center]Good job, Agent![/center]"
-		$LevelDoneBox/score.text = "SCORE: " + str(score)
+		$LevelDoneBox/score.text = "SCORE: " + str(score + 5000)
 		$LevelDoneBox/t_left.text = "TIME LEFT: " + str(time_left) + " * 1000 = " + str(time_left * 1000)
-		$LevelDoneBox/a_left.text = "CIVILIANS SPARED: " + str(attempts_left) + " * 5000 = " + str(attempts_left * 5000)
+		$LevelDoneBox/a_left.text = "ATTEMPTS SPARED: " + str(attempts_left) + " * 5000 = " + str(attempts_left * 5000)
+		$LevelDoneBox/h_bonus.text = "HINT BONUS: 5000"
 		$LevelDoneBox.visible = true
 	else:
 		$LevelDoneBox/header.text = "[center]MISSION FAILED[/center]"
@@ -17,6 +18,7 @@ func pop_up(is_win:bool, score:int, attempts_left: int, time_left:int) -> void:
 		$LevelDoneBox/score.text = "SCORE: " + str(score)
 		$LevelDoneBox/t_left.text = ""
 		$LevelDoneBox/a_left.text = ""
+		$LevelDoneBox/h_bonus.text = ""
 		$LevelDoneBox.visible = true
 	
 func _on_retry_pressed() -> void:

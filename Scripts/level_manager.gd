@@ -32,7 +32,7 @@ func end_level(is_win:bool) -> void:
 	time_left = $LevelTimer/TimerGroup.time
 	attempts_left = $AttemptsCounter/Attempts.attempts
 	if is_win:
-		score = (time_left * 1000) + (attempts_left * 50000)
+		score = (time_left * 1000) + (attempts_left * 5000)
 	else:
 		score = 0
 	$LevelDoneOverlay.pop_up(is_win, score, attempts_left, time_left)

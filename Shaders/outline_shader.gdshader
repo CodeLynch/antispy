@@ -1,6 +1,8 @@
 shader_type canvas_item;
 uniform vec4 outline_color: source_color;
 uniform bool is_active;
+uniform bool is_marked;
+
 void vertex() {
 	// Called for every vertex the material is visible on.
 }
@@ -18,6 +20,10 @@ void fragment() {
 	if(is_active){
 	vec4 final_col = mix(sprite_color, outline_color, clamp(alpha, 0.0, 1.0));
 		COLOR = vec4(final_col.rgb, clamp(abs(alpha) + sprite_color.a, 0.0, 1.0));
+	}
+	if(is_marked){
+	vec4 final_col = mix(outline_color, outline_color, clamp(alpha, 0.0, 0.5));
+		COLOR = vec4(final_col.rgb, clamp(sprite_color.a, 0.0, 1.0));
 	}
 
 

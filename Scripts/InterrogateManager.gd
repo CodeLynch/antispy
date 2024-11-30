@@ -19,6 +19,7 @@ var io_is_spy: bool = false
 3 - Janitor
 '''
 signal kill_npc(id: int)
+signal mark_npc(id:int)
 signal close_overlay(id: int)
 
 func _ready() -> void:
@@ -27,6 +28,7 @@ func _ready() -> void:
 	$exit.visible = false
 	$npc_dialogue.visible = false
 	$rsa_dialogue.visible = false
+	$mark.visible = false
 	
 func start(id:int, name:String, role: int, role_tex: String, is_spy:bool) -> void:
 	if is_active:
@@ -53,6 +55,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			$rsa_dialogue.visible = false
 			$npc_dialogue/dialogue_text.text = dialogue[role_num + 1][rng.randi_range(1,4)]["say"]
 			$kill.disabled = false
+			$mark.disabled = false
 			$exit.disabled = false
 			if io_is_spy and rng.randf_range(0,1) >= SUCCESS_PROB:
 				$npc_dialogue/heart_rate.text = "[color=#e01f3f]HIGH[/color]"
@@ -73,6 +76,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_interrogate_pressed() -> void:
 	$interrogate.disabled = true
 	$kill.disabled = true
+	$mark.disabled = true
 	$exit.disabled = true
 	$rsa_dialogue/dialogue_text.text = dialogue[0][0]["say"]
 	$npc_dialogue.visible = false
@@ -82,6 +86,7 @@ func _on_interrogate_pressed() -> void:
 func _on_kill_pressed() -> void:
 	$interrogate.disabled = true
 	$kill.disabled = true
+	$mark.disabled = true
 	$exit.disabled = true
 	$rsa_dialogue/dialogue_text.text = dialogue[0][1]["say"]
 	$npc_dialogue.visible = false
@@ -99,7 +104,9 @@ func show_overlay() -> void:
 	$npc_dialogue/AnimatedSprite2D.play()
 	$interrogate.visible = true
 	$kill.visible = true
+	$mark.visible = true
 	$exit.visible = true
+	
 	
 func hide_overlay() -> void:
 	$npc_dialogue/heart_rate.text = "[color=#271d2c]NORMAL[/color]"
@@ -107,8 +114,16 @@ func hide_overlay() -> void:
 	$rsa_dialogue.visible = false
 	$interrogate.disabled = false
 	$kill.disabled = false
+	$mark.disabled = false
 	$exit.disabled = false
 	$interrogate.visible = false
 	$kill.visible = false
 	$exit.visible = false
+	$mark.visible = false
 	close_overlay.emit(npc_id)
+
+
+func _on_mark_pressed() -> void:
+	hide_overlay()
+	is_active = false
+	mark_npc.emit(npc_id)

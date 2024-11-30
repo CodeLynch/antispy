@@ -12,6 +12,7 @@ resource_local_to_scene = true
 shader = ExtResource("1_pj7ap")
 shader_parameter/outline_color = Color(0.878431, 0.121569, 0.247059, 1)
 shader_parameter/is_active = false
+shader_parameter/is_marked = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_umudn"]
 atlas = ExtResource("3_bq8dt")

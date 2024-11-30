@@ -6,12 +6,12 @@ signal npc_clicked(id: int, name:String, role_int: int, role_tex: String, is_spy
 var is_highlighted: bool = false
 
 func _mouse_enter() -> void:
-	if(npc_char.near_player):
+	if(npc_char.near_player and !npc_char.is_dead):
 		animated_sprite_2d.material.set_shader_parameter("is_active", true)
 		is_highlighted = true
 	
 func _mouse_exit() -> void:
-	if(npc_char.near_player):
+	if(npc_char.near_player and !npc_char.is_dead):
 		animated_sprite_2d.material.set_shader_parameter("is_active", false)
 		is_highlighted = false
 
