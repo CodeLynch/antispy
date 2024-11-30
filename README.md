@@ -17,9 +17,11 @@ Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
         - Radar system ✅
         - Heart rates ✅
         - Anxious behaviour ✅
+    - Mark suspects ✅
     - Kill Spy ✅
     - Three Kill attempts ✅
     - Level End Overlay ✅
+- Tilemap for Levels ✅
 - Animations ⌛
     - Characters ⌛
 
@@ -28,13 +30,12 @@ Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
 - Level Select ❗
 - Player Guide Modal❗
 - Gameplay Loop ❗
-    - Mark suspects ❗
     - Cipher Intel (give role of spy) ❗
 - Multiple Levels ❗
-- Tilemap for Levels ❗
 - Animations ❗
     - UI (unlikely)❗
 - Music ❗
+- SFX ❗
 
 ## Bonus 
 - Cheat Codes (unlikely) ❗ 
