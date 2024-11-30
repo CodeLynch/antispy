@@ -12,6 +12,7 @@ resource_local_to_scene = true
 shader = ExtResource("1_sijop")
 shader_parameter/outline_color = Color(0.878431, 0.121569, 0.247059, 1)
 shader_parameter/is_active = false
+shader_parameter/is_marked = null
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2e60f"]
 atlas = ExtResource("3_iqje3")
@@ -254,7 +255,7 @@ script = ExtResource("1_x3kvf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_i6ok3")
-position = Vector2(0, -9)
+position = Vector2(0, -25)
 sprite_frames = SubResource("SpriteFrames_2elcu")
 animation = &"walk_s"
 autoplay = "idle"

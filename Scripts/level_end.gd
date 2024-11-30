@@ -3,14 +3,17 @@ extends CanvasLayer
 func _ready() -> void:
 	$LevelDoneBox.visible = false
 	
-func pop_up(is_win:bool, score:int, attempts_left: int, time_left:int) -> void:
+func pop_up(is_win:bool, score:int, attempts_left: int, time_left:int, hint_used: bool) -> void:
 	if is_win:
 		$LevelDoneBox/header.text = "[center]MISSION COMPLETE[/center]"
 		$LevelDoneBox/body.text = "[center]Good job, Agent![/center]"
-		$LevelDoneBox/score.text = "SCORE: " + str(score + 5000)
+		$LevelDoneBox/score.text = "SCORE: " + str(score)
 		$LevelDoneBox/t_left.text = "TIME LEFT: " + str(time_left) + " * 1000 = " + str(time_left * 1000)
 		$LevelDoneBox/a_left.text = "ATTEMPTS SPARED: " + str(attempts_left) + " * 5000 = " + str(attempts_left * 5000)
-		$LevelDoneBox/h_bonus.text = "HINT BONUS: 5000"
+		if hint_used:
+			$LevelDoneBox/h_bonus.text = "HINT BONUS: 0"
+		else:
+			$LevelDoneBox/h_bonus.text = "HINT BONUS: 10000"
 		$LevelDoneBox.visible = true
 	else:
 		$LevelDoneBox/header.text = "[center]MISSION FAILED[/center]"

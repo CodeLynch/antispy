@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://xiu3ptel3d06"]
+[gd_scene load_steps=54 format=4 uid="uid://xiu3ptel3d06"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_6k0cf"]
 [ext_resource type="PackedScene" uid="uid://dvythg0ue3ni5" path="res://Scenes/player.tscn" id="1_ae4rx"]
@@ -20,6 +20,15 @@
 [ext_resource type="Script" path="res://Scripts/attempt_counter.gd" id="15_uhpfc"]
 [ext_resource type="Texture2D" uid="uid://bc270d876b745" path="res://Assets/dialogueTile.png" id="17_5pt3y"]
 [ext_resource type="Script" path="res://Scripts/level_end.gd" id="17_cg76u"]
+[ext_resource type="PackedScene" uid="uid://dgboobdkj8lma" path="res://Scenes/cipher_hint.tscn" id="21_c685y"]
+[ext_resource type="Texture2D" uid="uid://b2say0gvm47ih" path="res://Assets/cipher_tile.png" id="22_8choi"]
+[ext_resource type="Texture2D" uid="uid://c6ijgye55ndcg" path="res://Assets/cipher.png" id="23_6bynf"]
+[ext_resource type="Texture2D" uid="uid://cxvkk7rb5ldtg" path="res://Assets/spy_track1.png" id="24_3h8fs"]
+[ext_resource type="Texture2D" uid="uid://nyhqrgxtbvb5" path="res://Assets/spy_track2.png" id="25_i4tjs"]
+[ext_resource type="Texture2D" uid="uid://o0t3ws5lhnos" path="res://Assets/call_cipher.png" id="25_u70qi"]
+[ext_resource type="Texture2D" uid="uid://jaujlr75dh6i" path="res://Assets/rsa_walk.png" id="26_ak7cm"]
+[ext_resource type="Texture2D" uid="uid://ykpvcicq13i2" path="res://Assets/heart.png" id="26_l3te5"]
+[ext_resource type="Texture2D" uid="uid://caywdj8wxnwsp" path="res://Assets/fa_walk.png" id="27_liyh8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_r5ml4"]
 vertices = PackedVector2Array(335.188, -180.078, 340.789, 103.969, -82.0313, 103.023, -82.9609, -183.898)
@@ -320,9 +329,122 @@ sources/1 = SubResource("TileSetAtlasSource_irxym")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lrv8d"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckyoy"]
+atlas = ExtResource("23_6bynf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm36q"]
+atlas = ExtResource("23_6bynf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnl6l"]
+atlas = ExtResource("23_6bynf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s13f"]
+atlas = ExtResource("23_6bynf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lm8r"]
+atlas = ExtResource("23_6bynf")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lvdt7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckyoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sm36q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnl6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckyoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sm36q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnl6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckyoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sm36q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnl6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckyoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sm36q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnl6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8s13f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lm8r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic8qb"]
+atlas = ExtResource("26_l3te5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpy2r"]
+atlas = ExtResource("26_l3te5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rs0q0"]
+atlas = ExtResource("26_l3te5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvo4r"]
+atlas = ExtResource("26_l3te5")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hcx58"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic8qb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpy2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rs0q0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvo4r")
+}],
+"loop": true,
+"name": &"beat",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xwhl5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e65ok"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y2gem"]
+
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_6k0cf")
+show_guide = true
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-136, 61)
@@ -478,6 +600,8 @@ scroll_active = false
 [node name="AttemptsCounter" parent="." instance=ExtResource("14_m00hs")]
 script = ExtResource("15_uhpfc")
 
+[node name="CipherHint" parent="." instance=ExtResource("21_c685y")]
+
 [node name="LevelDoneOverlay" type="CanvasLayer" parent="."]
 process_mode = 3
 script = ExtResource("17_cg76u")
@@ -604,4 +728,173 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_blppn")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_lrv8d")
 text = "Main Menu"
 
+[node name="GameGuide" type="CanvasLayer" parent="."]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GameGuide"]
+offset_left = 37.0
+offset_top = 18.0
+offset_right = 1129.0
+offset_bottom = 634.0
+texture = ExtResource("22_8choi")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameGuide/NinePatchRect"]
+process_mode = 3
+position = Vector2(65, 113)
+scale = Vector2(3.53906, 3.53906)
+sprite_frames = SubResource("SpriteFrames_lvdt7")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Header" type="RichTextLabel" parent="GameGuide/NinePatchRect"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = -4.0
+offset_right = 437.0
+offset_bottom = 49.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 64
+text = "MISSION BRIEF"
+
+[node name="Intro" type="RichTextLabel" parent="GameGuide/NinePatchRect"]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 55.0
+offset_right = 1058.0
+offset_bottom = 168.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 32
+text = "Come in, Agent RSA. This is Cipher. I will be briefing you about your mission. You are tasked to find and eliminate the spies within our organization but you are only given one minute to do so before the spies are extracted. 
+There are 3 clues on determing if someone is a spy: "
+
+[node name="Tell1" type="RichTextLabel" parent="GameGuide/NinePatchRect"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 181.0
+offset_right = 1089.0
+offset_bottom = 263.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 32
+text = "Your mood changes when a suspicious character is nearby. Sometimes a suspicious character isn't actually a spy so be careful."
+
+[node name="Tell2" type="RichTextLabel" parent="GameGuide/NinePatchRect"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 260.0
+offset_right = 1079.0
+offset_bottom = 352.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 32
+text = "You can Interrogate a suspect bluntly, if their heart rate increases they are a spy. However there's a chance your attempt at interrogation may not affect a spy.
+"
+
+[node name="Tell3" type="RichTextLabel" parent="GameGuide/NinePatchRect"]
+layout_mode = 0
+offset_left = 199.0
+offset_top = 367.0
+offset_right = 1084.0
+offset_bottom = 454.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 32
+text = "All Spies naturally try to avoid interaction, spies will move away if you get close. However, there are also civilians that are anxious and will try to avoid you."
+
+[node name="Tell4" type="RichTextLabel" parent="GameGuide/NinePatchRect"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 469.0
+offset_right = 1073.0
+offset_bottom = 622.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 32
+text = "You can mark your suspects if your not sure so you don't lose track of them. Remember, you are only allowed 3 failed attempts before we'll have to pull you back in, So make your decisions wisely. If you need more intel you can ask me by clicking the     icon. Good luck agent!"
+
+[node name="Sprite2D" type="Sprite2D" parent="GameGuide/NinePatchRect"]
+position = Vector2(54, 219)
+scale = Vector2(1.375, 1.375)
+texture = ExtResource("24_3h8fs")
+
+[node name="Sprite2D5" type="Sprite2D" parent="GameGuide/NinePatchRect"]
+position = Vector2(709, 540)
+scale = Vector2(2.375, 2.375)
+texture = ExtResource("25_u70qi")
+
+[node name="Sprite2D2" type="Sprite2D" parent="GameGuide/NinePatchRect"]
+position = Vector2(148, 220)
+scale = Vector2(1.37891, 1.37891)
+texture = ExtResource("25_i4tjs")
+
+[node name="Sprite2D3" type="Sprite2D" parent="GameGuide/NinePatchRect"]
+position = Vector2(54, 394)
+scale = Vector2(2.29375, 2.29375)
+texture = ExtResource("26_ak7cm")
+region_enabled = true
+region_rect = Rect2(108, 51, 20, 47)
+
+[node name="Sprite2D4" type="Sprite2D" parent="GameGuide/NinePatchRect"]
+position = Vector2(141, 397)
+scale = Vector2(2.34535, 2.34535)
+texture = ExtResource("27_liyh8")
+region_enabled = true
+region_rect = Rect2(65, 48, 28, 48)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GameGuide/NinePatchRect"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 279.0
+offset_right = 189.0
+offset_bottom = 332.0
+texture = ExtResource("17_5pt3y")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Header2" type="RichTextLabel" parent="GameGuide/NinePatchRect/NinePatchRect"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = -1.0
+offset_right = 162.0
+offset_bottom = 52.0
+theme_override_colors/default_color = Color(0.878431, 0.121569, 0.247059, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 64
+text = "HIGH"
+
+[node name="Sprite2D" type="Sprite2D" parent="GameGuide/NinePatchRect/NinePatchRect"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameGuide/NinePatchRect/NinePatchRect"]
+position = Vector2(32, 27)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_hcx58")
+animation = &"beat"
+frame_progress = 0.866982
+
+[node name="exit" type="Button" parent="GameGuide/NinePatchRect"]
+process_mode = 3
+layout_mode = 0
+offset_left = 811.0
+offset_top = 550.0
+offset_right = 1084.0
+offset_bottom = 609.0
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_hover_pressed_color = Color(1, 0.972549, 0.929412, 1)
+theme_override_colors/font_hover_color = Color(1, 0.972549, 0.929412, 1)
+theme_override_colors/font_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/font = ExtResource("11_h1lvl")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xwhl5")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_e65ok")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_y2gem")
+text = "Understood"
+
 [connection signal="pressed" from="LevelDoneOverlay/LevelDoneBox/retry" to="LevelDoneOverlay" method="_on_retry_pressed"]
+[connection signal="pressed" from="GameGuide/NinePatchRect/exit" to="." method="_on_exit_pressed"]

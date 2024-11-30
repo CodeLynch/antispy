@@ -34,7 +34,7 @@ func spawn_random():
 			npc_name = $RandomNames.get_random_name(0)
 		if  spy_spawned < spy_count:
 			npc_ins.set_params(i + 1, npc_name, get_role_no(npc_ins.name), true, true, true)
-			spy_list.append(npc_name + "," + npc_ins.name)
+			spy_list.append(npc_name + "," + transform_role(npc_ins.name))
 			spy_spawned += 1
 		else:
 			npc_ins = npc_scene.instantiate()
@@ -48,12 +48,27 @@ func spawn_random():
 	npc_list = get_tree().get_nodes_in_group("npcs")
 	active_spy_cnt = spy_count
 
-	
 func _ready() -> void:
 	spawn_random()
 	$"../InterrogateOverlay".kill_npc.connect(kill_npc)
 	$"../InterrogateOverlay".close_overlay.connect(stop_talk)
 	$"../InterrogateOverlay".mark_npc.connect(toggle_mark)
+
+func generate_hint() -> String:
+	var hint:String = ""
+	var count = 0
+	if spy_list.size() > 1:
+		hint = "There are spies pretending to be the following roles: "
+		for spy in spy_list:
+			var spy_details = spy.split(",")
+			hint = hint + spy_details[1]
+			count += 1
+			if count < spy_list.size():
+				hint = hint + ", "
+		
+	else:
+		hint = "The spy is pretending to be a " + spy_list[0].split(",")[1]
+	return hint
 	
 func show_overlay(id:int, name:String, role_int: int, role_tex: String, is_spy:bool) -> void:
 	$"../InterrogateOverlay".start(id, name, role_int, role_tex, is_spy)
@@ -81,6 +96,18 @@ func rand_bool(chance:float) -> bool:
 		return false
 	 
 
+func transform_role(role_name:String) -> String:
+	if role_name == "field_agent":
+		return "Field Agent"
+	elif role_name == "analyst":
+		return "Analyst"
+	elif role_name == "rd_eng":
+		return "R&D Engineer"
+	elif role_name == "janitor":
+		return "Janitor"
+	else:
+		return "<Invalid Input>"
+	
 func get_role_no(role_name: String) -> int:
 	if role_name == "field_agent":
 		return 0

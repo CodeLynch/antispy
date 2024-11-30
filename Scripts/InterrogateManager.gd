@@ -30,7 +30,7 @@ func _ready() -> void:
 	$rsa_dialogue.visible = false
 	$mark.visible = false
 	
-func start(id:int, name:String, role: int, role_tex: String, is_spy:bool) -> void:
+func start(id:int, npc_name:String, role: int, role_tex: String, is_spy:bool) -> void:
 	if is_active:
 		return
 	is_active = true
@@ -40,7 +40,7 @@ func start(id:int, name:String, role: int, role_tex: String, is_spy:bool) -> voi
 	npc_id = id
 	io_is_spy = is_spy
 	$npc_dialogue/Sprite2D.texture = s2dtex
-	$npc_dialogue/npc_name.text = name
+	$npc_dialogue/npc_name.text = npc_name
 	$npc_dialogue/npc_role.text = "(" + dialogue[role+1][0]["role"] + ")"
 	$npc_dialogue/dialogue_text.text = dialogue[role+1][0]["say"]
 	show_overlay()
