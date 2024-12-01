@@ -1,5 +1,7 @@
 extends CanvasLayer
 
-func _on_color_rect_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed():
-		get_tree().change_scene_to_file("res://scenes/mission_select.tscn")
+func _input(event):
+	if event.is_action_pressed("mouse_click"):
+		get_tree().change_scene_to_file("res://Scenes/mission_select.tscn")
+		
+		

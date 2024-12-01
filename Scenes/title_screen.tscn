@@ -4,6 +4,21 @@
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_jii3p"]
 [ext_resource type="FontFile" uid="uid://dqqb4aa66ub7s" path="res://Assets/m5x7.ttf" id="2_d2msg"]
 
+[sub_resource type="Animation" id="Animation_ydidm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_e1ely"]
 resource_name = "blink"
 loop_mode = 1
@@ -20,21 +35,6 @@ tracks/0/keys = {
 "values": [true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_ydidm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q4vrm"]
 _data = {
 "RESET": SubResource("Animation_ydidm"),
@@ -45,6 +45,7 @@ _data = {
 script = ExtResource("1_jii3p")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+process_mode = 3
 offset_right = 1198.0
 offset_bottom = 720.0
 color = Color(0.152941, 0.113725, 0.172549, 1)
