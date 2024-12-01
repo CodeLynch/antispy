@@ -4,6 +4,9 @@ Find the spy in your super secret organization before the time runs out!
 Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
 
 ## Progress:
+- Title Screen ✅
+- Level Select ✅
+- Multiple Levels ✅
 - Initial Character Sprites ✅
 - Character Portraits ✅
 - Character Movement w/ Cam ✅
@@ -26,14 +29,12 @@ Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
 - Player Guide Modal✅
 - Animations ✅
     - Characters (mostly) ✅
+- Music ✅
 
 ## To-dos:
-- Title Screen ❗
-- Level Select ❗
-- Multiple Levels ❗
+
 - Animations ❗
     - UI (unlikely)❗
-- Music ❗
 - SFX ❗
 
 ## Bonus 
