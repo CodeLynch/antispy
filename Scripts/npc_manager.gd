@@ -5,9 +5,8 @@ extends Node2D
 @export var x_limit = 0 
 @export var y_limit = 0
 @export var npcs:Array[PackedScene] = []
-
-var ANXIOUS_PROB = .3
-var SUS_PROB = .3
+@export var ANXIOUS_PROB = .3
+@export var SUS_PROB = .3
 
 var npcs_pos:Array[Vector2i] = []
 var rng = RandomNumberGenerator.new() 
@@ -71,6 +70,8 @@ func generate_hint() -> String:
 	return hint
 	
 func show_overlay(id:int, name:String, role_int: int, role_tex: String, is_spy:bool) -> void:
+	var tar = npc_list[id]
+	tar.set_talk(true)
 	$"../InterrogateOverlay".start(id, name, role_int, role_tex, is_spy)
 
 func kill_npc(id: int) -> void:
@@ -79,7 +80,7 @@ func kill_npc(id: int) -> void:
 	
 func stop_talk(id: int) -> void:
 	var tar = npc_list[id]
-	tar.toggle_talk()
+	tar.set_talk(false)
 
 func was_npc_spy(is_spy:bool):
 	if is_spy:

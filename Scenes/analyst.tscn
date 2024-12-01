@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bpd2ksnvpqcst"]
+[gd_scene load_steps=38 format=3 uid="uid://bpd2ksnvpqcst"]
 
 [ext_resource type="Shader" path="res://Shaders/outline_shader.gdshader" id="1_sijop"]
 [ext_resource type="Script" path="res://Scripts/npc_move.gd" id="1_x3kvf"]
@@ -17,10 +17,6 @@ shader_parameter/is_marked = null
 [sub_resource type="AtlasTexture" id="AtlasTexture_2e60f"]
 atlas = ExtResource("3_iqje3")
 region = Rect2(34, 100, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q4y4r"]
-atlas = ExtResource("3_iqje3")
-region = Rect2(68, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qcmwc"]
 atlas = ExtResource("3_iqje3")
@@ -133,9 +129,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q4y4r")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qcmwc")
 }, {
@@ -257,9 +250,8 @@ script = ExtResource("1_x3kvf")
 material = SubResource("ShaderMaterial_i6ok3")
 position = Vector2(0, -25)
 sprite_frames = SubResource("SpriteFrames_2elcu")
-animation = &"walk_s"
+animation = &"die"
 autoplay = "idle"
-frame_progress = 0.333351
 
 [node name="NPCChar" type="Node2D" parent="."]
 script = ExtResource("3_k2oqp")

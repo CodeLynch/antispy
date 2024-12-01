@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://xiu3ptel3d06"]
+[gd_scene load_steps=52 format=4 uid="uid://xiu3ptel3d06"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_6k0cf"]
 [ext_resource type="PackedScene" uid="uid://dvythg0ue3ni5" path="res://Scenes/player.tscn" id="1_ae4rx"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://Scripts/level_end.gd" id="17_cg76u"]
 [ext_resource type="PackedScene" uid="uid://dgboobdkj8lma" path="res://Scenes/cipher_hint.tscn" id="21_c685y"]
 [ext_resource type="Texture2D" uid="uid://b2say0gvm47ih" path="res://Assets/cipher_tile.png" id="22_8choi"]
+[ext_resource type="Script" path="res://Scripts/cipher_guide.gd" id="22_gff2t"]
 [ext_resource type="Texture2D" uid="uid://c6ijgye55ndcg" path="res://Assets/cipher.png" id="23_6bynf"]
 [ext_resource type="Texture2D" uid="uid://cxvkk7rb5ldtg" path="res://Assets/spy_track1.png" id="24_3h8fs"]
 [ext_resource type="Texture2D" uid="uid://nyhqrgxtbvb5" path="res://Assets/spy_track2.png" id="25_i4tjs"]
@@ -435,12 +436,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xwhl5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e65ok"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y2gem"]
-
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_6k0cf")
@@ -508,6 +503,7 @@ tile_set = SubResource("TileSet_eeuok")
 format = 2
 
 [node name="Floor" type="TileMapLayer" parent="TileMap"]
+z_index = -2
 tile_map_data = PackedByteArray("AADz//P/AQAAAAAAAADz//T/AQAAAAAAAADz//X/AQAAAAAAAADz//b/AQAAAAAAAADz//f/AQAAAAAAAADz//j/AQAAAAAAAADz//n/AQAAAAAAAADz//r/AQAAAAAAAADz//v/AQAAAAAAAADz//z/AQAAAAAAAADz//3/AQAAAAAAAADz//7/AQAAAAAAAADz////AQAAAAAAAADz/wAAAQAAAAAAAADz/wEAAQAAAAAAAADz/wIAAQAAAAAAAADz/wMAAQAAAAAAAADz/wQAAQAAAAAAAADz/wUAAQAAAAAAAADz/wYAAQAAAAAAAADz/wcAAQAAAAAAAAD0//P/AQAAAAAAAAD0//T/AQAAAAAAAAD0//X/AQAAAAAAAAD0//b/AQAAAAAAAAD0//f/AQAAAAAAAAD0//j/AQAAAAAAAAD0//n/AQAAAAAAAAD0//r/AQAAAAAAAAD0//v/AQAAAAAAAAD0//z/AQAAAAAAAAD0//3/AQAAAAAAAAD0//7/AQAAAAAAAAD0////AQAAAAAAAAD0/wAAAQAAAAAAAAD0/wEAAQAAAAAAAAD0/wIAAQAAAAAAAAD0/wMAAQAAAAAAAAD0/wQAAQAAAAAAAAD0/wUAAQAAAAAAAAD0/wYAAQAAAAAAAAD0/wcAAQAAAAAAAAD1//P/AQAAAAAAAAD1//T/AQAAAAAAAAD1//X/AQAAAAAAAAD1//b/AQAAAAAAAAD1//f/AQAAAAAAAAD1//j/AQAAAAAAAAD1//n/AQAAAAAAAAD1//r/AQAAAAAAAAD1//v/AQAAAAAAAAD1//z/AQAAAAAAAAD1//3/AQAAAAAAAAD1//7/AQAAAAAAAAD1////AQAAAAAAAAD1/wAAAQAAAAAAAAD1/wEAAQAAAAAAAAD1/wIAAQAAAAAAAAD1/wMAAQAAAAAAAAD1/wQAAQAAAAAAAAD1/wUAAQAAAAAAAAD1/wYAAQAAAAAAAAD1/wcAAQAAAAAAAAD2//P/AQAAAAAAAAD2//T/AQAAAAAAAAD2//X/AQAAAAAAAAD2//b/AQAAAAAAAAD2//f/AQAAAAAAAAD2//j/AQAAAAAAAAD2//n/AQAAAAAAAAD2//r/AQAAAAAAAAD2//v/AQAAAAAAAAD2//z/AQAAAAAAAAD2//3/AQAAAAAAAAD2//7/AQAAAAAAAAD2////AQAAAAAAAAD2/wAAAQAAAAAAAAD2/wEAAQAAAAAAAAD2/wIAAQAAAAAAAAD2/wMAAQAAAAAAAAD2/wQAAQAAAAAAAAD2/wUAAQAAAAAAAAD2/wYAAQAAAAAAAAD2/wcAAQAAAAAAAAD3//P/AQAAAAAAAAD3//T/AQAAAAAAAAD3//X/AQAAAAAAAAD3//b/AQAAAAAAAAD3//f/AQAAAAAAAAD3//j/AQAAAAAAAAD3//n/AQAAAAAAAAD3//r/AQAAAAAAAAD3//v/AQAAAAAAAAD3//z/AQAAAAAAAAD3//3/AQAAAAAAAAD3//7/AQAAAAAAAAD3////AQAAAAAAAAD3/wAAAQAAAAAAAAD3/wEAAQAAAAAAAAD3/wIAAQAAAAAAAAD3/wMAAQAAAAAAAAD3/wQAAQAAAAAAAAD3/wUAAQAAAAAAAAD3/wYAAQAAAAAAAAD3/wcAAQAAAAAAAAD4//P/AQAAAAAAAAD4//T/AQAAAAAAAAD4//X/AQAAAAAAAAD4//b/AQAAAAAAAAD4//f/AQAAAAAAAAD4//j/AQAAAAAAAAD4//n/AQAAAAAAAAD4//r/AQAAAAAAAAD4//v/AQAAAAAAAAD4//z/AQAAAAAAAAD4//3/AQAAAAAAAAD4//7/AQAAAAAAAAD4////AQAAAAAAAAD4/wAAAQAAAAAAAAD4/wEAAQAAAAAAAAD4/wIAAQAAAAAAAAD4/wMAAQAAAAAAAAD4/wQAAQAAAAAAAAD4/wUAAQAAAAAAAAD4/wYAAQAAAAAAAAD4/wcAAQAAAAAAAAD5//P/AQAAAAAAAAD5//T/AQAAAAAAAAD5//X/AQAAAAAAAAD5//b/AQAAAAAAAAD5//f/AQAAAAAAAAD5//j/AQAAAAAAAAD5//n/AQAAAAAAAAD5//r/AQAAAAAAAAD5//v/AQAAAAAAAAD5//z/AQAAAAAAAAD5//3/AQAAAAAAAAD5//7/AQAAAAAAAAD5////AQAAAAAAAAD5/wAAAQAAAAAAAAD5/wEAAQAAAAAAAAD5/wIAAQAAAAAAAAD5/wMAAQAAAAAAAAD5/wQAAQAAAAAAAAD5/wUAAQAAAAAAAAD5/wYAAQAAAAAAAAD5/wcAAQAAAAAAAAD6//P/AQAAAAAAAAD6//T/AQAAAAAAAAD6//X/AQAAAAAAAAD6//b/AQAAAAAAAAD6//f/AQAAAAAAAAD6//j/AQAAAAAAAAD6//n/AQAAAAAAAAD6//r/AQAAAAAAAAD6//v/AQAAAAAAAAD6//z/AQAAAAAAAAD6//3/AQAAAAAAAAD6//7/AQAAAAAAAAD6////AQAAAAAAAAD6/wAAAQAAAAAAAAD6/wEAAQAAAAAAAAD6/wIAAQAAAAAAAAD6/wMAAQAAAAAAAAD6/wQAAQAAAAAAAAD6/wUAAQAAAAAAAAD6/wYAAQAAAAAAAAD6/wcAAQAAAAAAAAD7//P/AQAAAAAAAAD7//T/AQAAAAAAAAD7//X/AQAAAAAAAAD7//b/AQAAAAAAAAD7//f/AQAAAAAAAAD7//j/AQAAAAAAAAD7//n/AQAAAAAAAAD7//r/AQAAAAAAAAD7//v/AQAAAAAAAAD7//z/AQAAAAAAAAD7//3/AQAAAAAAAAD7//7/AQAAAAAAAAD7////AQAAAAAAAAD7/wAAAQAAAAAAAAD7/wEAAQAAAAAAAAD7/wIAAQAAAAAAAAD7/wMAAQAAAAAAAAD7/wQAAQAAAAAAAAD7/wUAAQAAAAAAAAD7/wYAAQAAAAAAAAD7/wcAAQAAAAAAAAD8//P/AQAAAAAAAAD8//T/AQAAAAAAAAD8//X/AQAAAAAAAAD8//b/AQAAAAAAAAD8//f/AQAAAAAAAAD8//j/AQAAAAAAAAD8//n/AQAAAAAAAAD8//r/AQAAAAAAAAD8//v/AQAAAAAAAAD8//z/AQAAAAAAAAD8//3/AQAAAAAAAAD8//7/AQAAAAAAAAD8////AQAAAAAAAAD8/wAAAQAAAAAAAAD8/wEAAQAAAAAAAAD8/wIAAQAAAAAAAAD8/wMAAQAAAAAAAAD8/wQAAQAAAAAAAAD8/wUAAQAAAAAAAAD8/wYAAQAAAAAAAAD8/wcAAQAAAAAAAAD9//P/AQAAAAAAAAD9//T/AQAAAAAAAAD9//X/AQAAAAAAAAD9//b/AQAAAAAAAAD9//f/AQAAAAAAAAD9//j/AQAAAAAAAAD9//n/AQAAAAAAAAD9//r/AQAAAAAAAAD9//v/AQAAAAAAAAD9//z/AQAAAAAAAAD9//3/AQAAAAAAAAD9//7/AQAAAAAAAAD9////AQAAAAAAAAD9/wAAAQAAAAAAAAD9/wEAAQAAAAAAAAD9/wIAAQAAAAAAAAD9/wMAAQAAAAAAAAD9/wQAAQAAAAAAAAD9/wUAAQAAAAAAAAD9/wYAAQAAAAAAAAD9/wcAAQAAAAAAAAD+//P/AQAAAAAAAAD+//T/AQAAAAAAAAD+//X/AQAAAAAAAAD+//b/AQAAAAAAAAD+//f/AQAAAAAAAAD+//j/AQAAAAAAAAD+//n/AQAAAAAAAAD+//r/AQAAAAAAAAD+//v/AQAAAAAAAAD+//z/AQAAAAAAAAD+//3/AQAAAAAAAAD+//7/AQAAAAAAAAD+////AQAAAAAAAAD+/wAAAQAAAAAAAAD+/wEAAQAAAAAAAAD+/wIAAQAAAAAAAAD+/wMAAQAAAAAAAAD+/wQAAQAAAAAAAAD+/wUAAQAAAAAAAAD+/wYAAQAAAAAAAAD+/wcAAQAAAAAAAAD///P/AQAAAAAAAAD///T/AQAAAAAAAAD///X/AQAAAAAAAAD///b/AQAAAAAAAAD///f/AQAAAAAAAAD///j/AQAAAAAAAAD///n/AQAAAAAAAAD///r/AQAAAAAAAAD///v/AQAAAAAAAAD///z/AQAAAAAAAAD///3/AQAAAAAAAAD///7/AQAAAAAAAAD/////AQAAAAAAAAD//wAAAQAAAAAAAAD//wEAAQAAAAAAAAD//wIAAQAAAAAAAAD//wMAAQAAAAAAAAD//wQAAQAAAAAAAAD//wUAAQAAAAAAAAD//wYAAQAAAAAAAAD//wcAAQAAAAAAAAAAAPP/AQAAAAAAAAAAAPT/AQAAAAAAAAAAAPX/AQAAAAAAAAAAAPb/AQAAAAAAAAAAAPf/AQAAAAAAAAAAAPj/AQAAAAAAAAAAAPn/AQAAAAAAAAAAAPr/AQAAAAAAAAAAAPv/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAP3/AQAAAAAAAAAAAP7/AQAAAAAAAAAAAP//AQAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAAUAAQAAAAAAAAAAAAYAAQAAAAAAAAAAAAcAAQAAAAAAAAABAPP/AQAAAAAAAAABAPT/AQAAAAAAAAABAPX/AQAAAAAAAAABAPb/AQAAAAAAAAABAPf/AQAAAAAAAAABAPj/AQAAAAAAAAABAPn/AQAAAAAAAAABAPr/AQAAAAAAAAABAPv/AQAAAAAAAAABAPz/AQAAAAAAAAABAP3/AQAAAAAAAAABAP7/AQAAAAAAAAABAP//AQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAABAAIAAQAAAAAAAAABAAMAAQAAAAAAAAABAAQAAQAAAAAAAAABAAUAAQAAAAAAAAABAAYAAQAAAAAAAAABAAcAAQAAAAAAAAACAPP/AQAAAAAAAAACAPT/AQAAAAAAAAACAPX/AQAAAAAAAAACAPb/AQAAAAAAAAACAPf/AQAAAAAAAAACAPj/AQAAAAAAAAACAPn/AQAAAAAAAAACAPr/AQAAAAAAAAACAPv/AQAAAAAAAAACAPz/AQAAAAAAAAACAP3/AQAAAAAAAAACAP7/AQAAAAAAAAACAP//AQAAAAAAAAACAAAAAQAAAAAAAAACAAEAAQAAAAAAAAACAAIAAQAAAAAAAAACAAMAAQAAAAAAAAACAAQAAQAAAAAAAAACAAUAAQAAAAAAAAACAAYAAQAAAAAAAAACAAcAAQAAAAAAAAADAPP/AQAAAAAAAAADAPT/AQAAAAAAAAADAPX/AQAAAAAAAAADAPb/AQAAAAAAAAADAPf/AQAAAAAAAAADAPj/AQAAAAAAAAADAPn/AQAAAAAAAAADAPr/AQAAAAAAAAADAPv/AQAAAAAAAAADAPz/AQAAAAAAAAADAP3/AQAAAAAAAAADAP7/AQAAAAAAAAADAP//AQAAAAAAAAADAAAAAQAAAAAAAAADAAEAAQAAAAAAAAADAAIAAQAAAAAAAAADAAMAAQAAAAAAAAADAAQAAQAAAAAAAAADAAUAAQAAAAAAAAADAAYAAQAAAAAAAAADAAcAAQAAAAAAAAAEAPP/AQAAAAAAAAAEAPT/AQAAAAAAAAAEAPX/AQAAAAAAAAAEAPb/AQAAAAAAAAAEAPf/AQAAAAAAAAAEAPj/AQAAAAAAAAAEAPn/AQAAAAAAAAAEAPr/AQAAAAAAAAAEAPv/AQAAAAAAAAAEAPz/AQAAAAAAAAAEAP3/AQAAAAAAAAAEAP7/AQAAAAAAAAAEAP//AQAAAAAAAAAEAAAAAQAAAAAAAAAEAAEAAQAAAAAAAAAEAAIAAQAAAAAAAAAEAAMAAQAAAAAAAAAEAAQAAQAAAAAAAAAEAAUAAQAAAAAAAAAEAAYAAQAAAAAAAAAEAAcAAQAAAAAAAAAFAPP/AQAAAAAAAAAFAPT/AQAAAAAAAAAFAPX/AQAAAAAAAAAFAPb/AQAAAAAAAAAFAPf/AQAAAAAAAAAFAPj/AQAAAAAAAAAFAPn/AQAAAAAAAAAFAPr/AQAAAAAAAAAFAPv/AQAAAAAAAAAFAPz/AQAAAAAAAAAFAP3/AQAAAAAAAAAFAP7/AQAAAAAAAAAFAP//AQAAAAAAAAAFAAAAAQAAAAAAAAAFAAEAAQAAAAAAAAAFAAIAAQAAAAAAAAAFAAMAAQAAAAAAAAAFAAQAAQAAAAAAAAAFAAUAAQAAAAAAAAAFAAYAAQAAAAAAAAAFAAcAAQAAAAAAAAAGAPP/AQAAAAAAAAAGAPT/AQAAAAAAAAAGAPX/AQAAAAAAAAAGAPb/AQAAAAAAAAAGAPf/AQAAAAAAAAAGAPj/AQAAAAAAAAAGAPn/AQAAAAAAAAAGAPr/AQAAAAAAAAAGAPv/AQAAAAAAAAAGAPz/AQAAAAAAAAAGAP3/AQAAAAAAAAAGAP7/AQAAAAAAAAAGAP//AQAAAAAAAAAGAAAAAQAAAAAAAAAGAAEAAQAAAAAAAAAGAAIAAQAAAAAAAAAGAAMAAQAAAAAAAAAGAAQAAQAAAAAAAAAGAAUAAQAAAAAAAAAGAAYAAQAAAAAAAAAGAAcAAQAAAAAAAAAHAPP/AQAAAAAAAAAHAPT/AQAAAAAAAAAHAPX/AQAAAAAAAAAHAPb/AQAAAAAAAAAHAPf/AQAAAAAAAAAHAPj/AQAAAAAAAAAHAPn/AQAAAAAAAAAHAPr/AQAAAAAAAAAHAPv/AQAAAAAAAAAHAPz/AQAAAAAAAAAHAP3/AQAAAAAAAAAHAP7/AQAAAAAAAAAHAP//AQAAAAAAAAAHAAAAAQAAAAAAAAAHAAEAAQAAAAAAAAAHAAIAAQAAAAAAAAAHAAMAAQAAAAAAAAAHAAQAAQAAAAAAAAAHAAUAAQAAAAAAAAAHAAYAAQAAAAAAAAAHAAcAAQAAAAAAAAAIAPP/AQAAAAAAAAAIAPT/AQAAAAAAAAAIAPX/AQAAAAAAAAAIAPb/AQAAAAAAAAAIAPf/AQAAAAAAAAAIAPj/AQAAAAAAAAAIAPn/AQAAAAAAAAAIAPr/AQAAAAAAAAAIAPv/AQAAAAAAAAAIAPz/AQAAAAAAAAAIAP3/AQAAAAAAAAAIAP7/AQAAAAAAAAAIAP//AQAAAAAAAAAIAAAAAQAAAAAAAAAIAAEAAQAAAAAAAAAIAAIAAQAAAAAAAAAIAAMAAQAAAAAAAAAIAAQAAQAAAAAAAAAIAAUAAQAAAAAAAAAIAAYAAQAAAAAAAAAIAAcAAQAAAAAAAAAJAPP/AQAAAAAAAAAJAPT/AQAAAAAAAAAJAPX/AQAAAAAAAAAJAPb/AQAAAAAAAAAJAPf/AQAAAAAAAAAJAPj/AQAAAAAAAAAJAPn/AQAAAAAAAAAJAPr/AQAAAAAAAAAJAPv/AQAAAAAAAAAJAPz/AQAAAAAAAAAJAP3/AQAAAAAAAAAJAP7/AQAAAAAAAAAJAP//AQAAAAAAAAAJAAAAAQAAAAAAAAAJAAEAAQAAAAAAAAAJAAIAAQAAAAAAAAAJAAMAAQAAAAAAAAAJAAQAAQAAAAAAAAAJAAUAAQAAAAAAAAAJAAYAAQAAAAAAAAAJAAcAAQAAAAAAAAAKAPP/AQAAAAAAAAAKAPT/AQAAAAAAAAAKAPX/AQAAAAAAAAAKAPb/AQAAAAAAAAAKAPf/AQAAAAAAAAAKAPj/AQAAAAAAAAAKAPn/AQAAAAAAAAAKAPr/AQAAAAAAAAAKAPv/AQAAAAAAAAAKAPz/AQAAAAAAAAAKAP3/AQAAAAAAAAAKAP7/AQAAAAAAAAAKAP//AQAAAAAAAAAKAAAAAQAAAAAAAAAKAAEAAQAAAAAAAAAKAAIAAQAAAAAAAAAKAAMAAQAAAAAAAAAKAAQAAQAAAAAAAAAKAAUAAQAAAAAAAAAKAAYAAQAAAAAAAAAKAAcAAQAAAAAAAAALAPP/AQAAAAAAAAALAPT/AQAAAAAAAAALAPX/AQAAAAAAAAALAPb/AQAAAAAAAAALAPf/AQAAAAAAAAALAPj/AQAAAAAAAAALAPn/AQAAAAAAAAALAPr/AQAAAAAAAAALAPv/AQAAAAAAAAALAPz/AQAAAAAAAAALAP3/AQAAAAAAAAALAP7/AQAAAAAAAAALAP//AQAAAAAAAAALAAAAAQAAAAAAAAALAAEAAQAAAAAAAAALAAIAAQAAAAAAAAALAAMAAQAAAAAAAAALAAQAAQAAAAAAAAALAAUAAQAAAAAAAAALAAYAAQAAAAAAAAALAAcAAQAAAAAAAAAMAPP/AQAAAAAAAAAMAPT/AQAAAAAAAAAMAPX/AQAAAAAAAAAMAPb/AQAAAAAAAAAMAPf/AQAAAAAAAAAMAPj/AQAAAAAAAAAMAPn/AQAAAAAAAAAMAPr/AQAAAAAAAAAMAPv/AQAAAAAAAAAMAPz/AQAAAAAAAAAMAP3/AQAAAAAAAAAMAP7/AQAAAAAAAAAMAP//AQAAAAAAAAAMAAAAAQAAAAAAAAAMAAEAAQAAAAAAAAAMAAIAAQAAAAAAAAAMAAMAAQAAAAAAAAAMAAQAAQAAAAAAAAAMAAUAAQAAAAAAAAAMAAYAAQAAAAAAAAAMAAcAAQAAAAAAAAANAPP/AQAAAAAAAAANAPT/AQAAAAAAAAANAPX/AQAAAAAAAAANAPb/AQAAAAAAAAANAPf/AQAAAAAAAAANAPj/AQAAAAAAAAANAPn/AQAAAAAAAAANAPr/AQAAAAAAAAANAPv/AQAAAAAAAAANAPz/AQAAAAAAAAANAP3/AQAAAAAAAAANAP7/AQAAAAAAAAANAP//AQAAAAAAAAANAAAAAQAAAAAAAAANAAEAAQAAAAAAAAANAAIAAQAAAAAAAAANAAMAAQAAAAAAAAANAAQAAQAAAAAAAAANAAUAAQAAAAAAAAANAAYAAQAAAAAAAAANAAcAAQAAAAAAAAAOAPP/AQAAAAAAAAAOAPT/AQAAAAAAAAAOAPX/AQAAAAAAAAAOAPb/AQAAAAAAAAAOAPf/AQAAAAAAAAAOAPj/AQAAAAAAAAAOAPn/AQAAAAAAAAAOAPr/AQAAAAAAAAAOAPv/AQAAAAAAAAAOAPz/AQAAAAAAAAAOAP3/AQAAAAAAAAAOAP7/AQAAAAAAAAAOAP//AQAAAAAAAAAOAAAAAQAAAAAAAAAOAAEAAQAAAAAAAAAOAAIAAQAAAAAAAAAOAAMAAQAAAAAAAAAOAAQAAQAAAAAAAAAOAAUAAQAAAAAAAAAOAAYAAQAAAAAAAAAOAAcAAQAAAAAAAAAPAPP/AQAAAAAAAAAPAPT/AQAAAAAAAAAPAPX/AQAAAAAAAAAPAPb/AQAAAAAAAAAPAPf/AQAAAAAAAAAPAPj/AQAAAAAAAAAPAPn/AQAAAAAAAAAPAPr/AQAAAAAAAAAPAPv/AQAAAAAAAAAPAPz/AQAAAAAAAAAPAP3/AQAAAAAAAAAPAP7/AQAAAAAAAAAPAP//AQAAAAAAAAAPAAAAAQAAAAAAAAAPAAEAAQAAAAAAAAAPAAIAAQAAAAAAAAAPAAMAAQAAAAAAAAAPAAQAAQAAAAAAAAAPAAUAAQAAAAAAAAAPAAYAAQAAAAAAAAAPAAcAAQAAAAAAAAAQAPP/AQAAAAAAAAAQAPT/AQAAAAAAAAAQAPX/AQAAAAAAAAAQAPb/AQAAAAAAAAAQAPf/AQAAAAAAAAAQAPj/AQAAAAAAAAAQAPn/AQAAAAAAAAAQAPr/AQAAAAAAAAAQAPv/AQAAAAAAAAAQAPz/AQAAAAAAAAAQAP3/AQAAAAAAAAAQAP7/AQAAAAAAAAAQAP//AQAAAAAAAAAQAAAAAQAAAAAAAAAQAAEAAQAAAAAAAAAQAAIAAQAAAAAAAAAQAAMAAQAAAAAAAAAQAAQAAQAAAAAAAAAQAAUAAQAAAAAAAAAQAAYAAQAAAAAAAAAQAAcAAQAAAAAAAADz/wgAAQAAAAAAAAD0/wgAAQAAAAAAAAD1/wgAAQAAAAAAAAD2/wgAAQAAAAAAAAD3/wgAAQAAAAAAAAD4/wgAAQAAAAAAAAD5/wgAAQAAAAAAAAD6/wgAAQAAAAAAAAD7/wgAAQAAAAAAAAD8/wgAAQAAAAAAAAD9/wgAAQAAAAAAAAD+/wgAAQAAAAAAAAD//wgAAQAAAAAAAAAAAAgAAQAAAAAAAAABAAgAAQAAAAAAAAACAAgAAQAAAAAAAAADAAgAAQAAAAAAAAAEAAgAAQAAAAAAAAAFAAgAAQAAAAAAAAAGAAgAAQAAAAAAAAAHAAgAAQAAAAAAAAAIAAgAAQAAAAAAAAAJAAgAAQAAAAAAAAAKAAgAAQAAAAAAAAALAAgAAQAAAAAAAAAMAAgAAQAAAAAAAAANAAgAAQAAAAAAAAAOAAgAAQAAAAAAAAAPAAgAAQAAAAAAAAAQAAgAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_m3jkt")
 
@@ -525,6 +521,8 @@ npc_count = 10
 x_limit = 120
 y_limit = 120
 npcs = Array[PackedScene]([ExtResource("3_p3ir8"), ExtResource("6_jyskt"), ExtResource("7_owtgg"), ExtResource("8_etuty")])
+ANXIOUS_PROB = 0.5
+SUS_PROB = 0.4
 
 [node name="RandomNames" parent="npc_spawner" instance=ExtResource("6_k6sqg")]
 
@@ -711,7 +709,7 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_blppn")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_lrv8d")
 text = "Retry"
 
-[node name="main_menu" type="Button" parent="LevelDoneOverlay/LevelDoneBox"]
+[node name="level_select" type="Button" parent="LevelDoneOverlay/LevelDoneBox"]
 layout_mode = 0
 offset_left = 392.0
 offset_top = 365.0
@@ -726,15 +724,18 @@ theme_override_fonts/font = ExtResource("11_h1lvl")
 theme_override_font_sizes/font_size = 64
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_blppn")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_lrv8d")
-text = "Main Menu"
+text = "Level Select"
 
-[node name="GameGuide" type="CanvasLayer" parent="."]
+[node name="GameGuide" type="CanvasLayer" parent="." node_paths=PackedStringArray("pages")]
+script = ExtResource("22_gff2t")
+pages = [NodePath("NinePatchRect/Page1"), NodePath("NinePatchRect/Page2"), NodePath("NinePatchRect/Page3"), NodePath("NinePatchRect/Page4"), NodePath("NinePatchRect/Page5")]
 
 [node name="NinePatchRect" type="NinePatchRect" parent="GameGuide"]
-offset_left = 37.0
-offset_top = 18.0
-offset_right = 1129.0
-offset_bottom = 634.0
+offset_left = 60.0
+offset_top = 255.0
+offset_right = 1130.0
+offset_bottom = 412.0
+mouse_filter = 1
 texture = ExtResource("22_8choi")
 patch_margin_left = 3
 patch_margin_top = 3
@@ -743,7 +744,7 @@ patch_margin_bottom = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameGuide/NinePatchRect"]
 process_mode = 3
-position = Vector2(65, 113)
+position = Vector2(65.625, 90.625)
 scale = Vector2(3.53906, 3.53906)
 sprite_frames = SubResource("SpriteFrames_lvdt7")
 animation = &"idle"
@@ -751,114 +752,97 @@ autoplay = "idle"
 
 [node name="Header" type="RichTextLabel" parent="GameGuide/NinePatchRect"]
 layout_mode = 0
-offset_left = 28.0
-offset_top = -4.0
-offset_right = 437.0
-offset_bottom = 49.0
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 417.0
+offset_bottom = 58.0
 theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
 theme_override_fonts/normal_font = ExtResource("11_h1lvl")
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 32
 text = "MISSION BRIEF"
 
-[node name="Intro" type="RichTextLabel" parent="GameGuide/NinePatchRect"]
+[node name="Page1" type="Control" parent="GameGuide/NinePatchRect"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="Intro" type="RichTextLabel" parent="GameGuide/NinePatchRect/Page1"]
 layout_mode = 0
-offset_left = 127.0
-offset_top = 55.0
-offset_right = 1058.0
-offset_bottom = 168.0
+offset_left = 131.625
+offset_top = 35.625
+offset_right = 1062.63
+offset_bottom = 148.625
 theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
 theme_override_fonts/normal_font = ExtResource("11_h1lvl")
 theme_override_font_sizes/normal_font_size = 32
-text = "Come in, Agent RSA. This is Cipher. I will be briefing you about your mission. You are tasked to find and eliminate the spies within our organization but you are only given one minute to do so before the spies are extracted. 
-There are 3 clues on determing if someone is a spy: "
+bbcode_enabled = true
+text = "Come in, Agent RSA. This is Cipher. I will be briefing you about your mission. You are tasked to find and eliminate the spies within our organization but you are only given a limited time to do so before the spies are extracted. There are 3 clues on determing if someone is a spy. "
 
-[node name="Tell1" type="RichTextLabel" parent="GameGuide/NinePatchRect"]
-layout_mode = 0
-offset_left = 200.0
-offset_top = 181.0
-offset_right = 1089.0
-offset_bottom = 263.0
-theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
-theme_override_fonts/normal_font = ExtResource("11_h1lvl")
-theme_override_font_sizes/normal_font_size = 32
-text = "Your mood changes when a suspicious character is nearby. Sometimes a suspicious character isn't actually a spy so be careful."
+[node name="Page2" type="Control" parent="GameGuide/NinePatchRect"]
+anchors_preset = 0
+offset_left = -5.0
+offset_top = -15.0
+offset_right = 35.0
+offset_bottom = 25.0
+mouse_filter = 1
 
-[node name="Tell2" type="RichTextLabel" parent="GameGuide/NinePatchRect"]
-layout_mode = 0
-offset_left = 202.0
-offset_top = 260.0
-offset_right = 1079.0
-offset_bottom = 352.0
-theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
-theme_override_fonts/normal_font = ExtResource("11_h1lvl")
-theme_override_font_sizes/normal_font_size = 32
-text = "You can Interrogate a suspect bluntly, if their heart rate increases they are a spy. However there's a chance your attempt at interrogation may not affect a spy.
-"
-
-[node name="Tell3" type="RichTextLabel" parent="GameGuide/NinePatchRect"]
-layout_mode = 0
-offset_left = 199.0
-offset_top = 367.0
-offset_right = 1084.0
-offset_bottom = 454.0
-theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
-theme_override_fonts/normal_font = ExtResource("11_h1lvl")
-theme_override_font_sizes/normal_font_size = 32
-text = "All Spies naturally try to avoid interaction, spies will move away if you get close. However, there are also civilians that are anxious and will try to avoid you."
-
-[node name="Tell4" type="RichTextLabel" parent="GameGuide/NinePatchRect"]
-layout_mode = 0
-offset_left = 33.0
-offset_top = 469.0
-offset_right = 1073.0
-offset_bottom = 622.0
-theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
-theme_override_fonts/normal_font = ExtResource("11_h1lvl")
-theme_override_font_sizes/normal_font_size = 32
-text = "You can mark your suspects if your not sure so you don't lose track of them. Remember, you are only allowed 3 failed attempts before we'll have to pull you back in, So make your decisions wisely. If you need more intel you can ask me by clicking the     icon. Good luck agent!"
-
-[node name="Sprite2D" type="Sprite2D" parent="GameGuide/NinePatchRect"]
-position = Vector2(54, 219)
+[node name="Sprite2D" type="Sprite2D" parent="GameGuide/NinePatchRect/Page2"]
+position = Vector2(917, 108)
 scale = Vector2(1.375, 1.375)
 texture = ExtResource("24_3h8fs")
 
-[node name="Sprite2D5" type="Sprite2D" parent="GameGuide/NinePatchRect"]
-position = Vector2(709, 540)
-scale = Vector2(2.375, 2.375)
-texture = ExtResource("25_u70qi")
-
-[node name="Sprite2D2" type="Sprite2D" parent="GameGuide/NinePatchRect"]
-position = Vector2(148, 220)
+[node name="Sprite2D2" type="Sprite2D" parent="GameGuide/NinePatchRect/Page2"]
+position = Vector2(1011, 109)
 scale = Vector2(1.37891, 1.37891)
 texture = ExtResource("25_i4tjs")
 
-[node name="Sprite2D3" type="Sprite2D" parent="GameGuide/NinePatchRect"]
-position = Vector2(54, 394)
-scale = Vector2(2.29375, 2.29375)
-texture = ExtResource("26_ak7cm")
-region_enabled = true
-region_rect = Rect2(108, 51, 20, 47)
-
-[node name="Sprite2D4" type="Sprite2D" parent="GameGuide/NinePatchRect"]
-position = Vector2(141, 397)
-scale = Vector2(2.34535, 2.34535)
-texture = ExtResource("27_liyh8")
-region_enabled = true
-region_rect = Rect2(65, 48, 28, 48)
-
-[node name="NinePatchRect" type="NinePatchRect" parent="GameGuide/NinePatchRect"]
+[node name="Tell1" type="RichTextLabel" parent="GameGuide/NinePatchRect/Page2"]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 279.0
-offset_right = 189.0
-offset_bottom = 332.0
+offset_left = 137.0
+offset_top = 71.0
+offset_right = 857.0
+offset_bottom = 153.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "1. Your mood changes when a suspicious character is nearby. Sometimes a suspicious character isn't actually a spy so be careful."
+
+[node name="Page3" type="Control" parent="GameGuide/NinePatchRect"]
+anchors_preset = 0
+offset_left = 3.0
+offset_top = -18.0
+offset_right = 43.0
+offset_bottom = 22.0
+mouse_filter = 1
+
+[node name="Tell2" type="RichTextLabel" parent="GameGuide/NinePatchRect/Page3"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 58.0
+offset_right = 848.0
+offset_bottom = 163.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "2. You can Interrogate a suspect bluntly, if their heart rate increases, they are a spy. However there's a chance your attempt at interrogation may not affect a spy but trying again may yield a different result
+"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GameGuide/NinePatchRect/Page3"]
+layout_mode = 0
+offset_left = 855.0
+offset_top = 84.0
+offset_right = 1027.0
+offset_bottom = 137.0
 texture = ExtResource("17_5pt3y")
 patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="Header2" type="RichTextLabel" parent="GameGuide/NinePatchRect/NinePatchRect"]
+[node name="Header2" type="RichTextLabel" parent="GameGuide/NinePatchRect/Page3/NinePatchRect"]
 layout_mode = 0
 offset_left = 58.0
 offset_top = -1.0
@@ -869,32 +853,84 @@ theme_override_fonts/normal_font = ExtResource("11_h1lvl")
 theme_override_font_sizes/normal_font_size = 64
 text = "HIGH"
 
-[node name="Sprite2D" type="Sprite2D" parent="GameGuide/NinePatchRect/NinePatchRect"]
+[node name="Sprite2D" type="Sprite2D" parent="GameGuide/NinePatchRect/Page3/NinePatchRect"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameGuide/NinePatchRect/NinePatchRect"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameGuide/NinePatchRect/Page3/NinePatchRect"]
 position = Vector2(32, 27)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_hcx58")
 animation = &"beat"
 frame_progress = 0.866982
 
-[node name="exit" type="Button" parent="GameGuide/NinePatchRect"]
-process_mode = 3
+[node name="Page4" type="Control" parent="GameGuide/NinePatchRect"]
+visible = false
+anchors_preset = 0
+offset_left = -1.0
+offset_top = -24.0
+offset_right = 39.0
+offset_bottom = 16.0
+mouse_filter = 1
+
+[node name="Tell3" type="RichTextLabel" parent="GameGuide/NinePatchRect/Page4"]
 layout_mode = 0
-offset_left = 811.0
-offset_top = 550.0
-offset_right = 1084.0
-offset_bottom = 609.0
-theme_type_variation = &"FlatButton"
-theme_override_colors/font_hover_pressed_color = Color(1, 0.972549, 0.929412, 1)
-theme_override_colors/font_hover_color = Color(1, 0.972549, 0.929412, 1)
-theme_override_colors/font_color = Color(0.152941, 0.113725, 0.172549, 1)
-theme_override_fonts/font = ExtResource("11_h1lvl")
-theme_override_font_sizes/font_size = 64
-theme_override_styles/focus = SubResource("StyleBoxEmpty_xwhl5")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_e65ok")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_y2gem")
-text = "Understood"
+offset_left = 135.0
+offset_top = 69.0
+offset_right = 870.0
+offset_bottom = 156.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "3. All Spies naturally try to avoid interaction, spies will move away if you get close. However, there are also civilians that are anxious and will try to avoid you."
+
+[node name="Sprite2D3" type="Sprite2D" parent="GameGuide/NinePatchRect/Page4"]
+position = Vector2(915, 109)
+scale = Vector2(2.29375, 2.29375)
+texture = ExtResource("26_ak7cm")
+region_enabled = true
+region_rect = Rect2(108, 51, 20, 47)
+
+[node name="Sprite2D4" type="Sprite2D" parent="GameGuide/NinePatchRect/Page4"]
+position = Vector2(988, 108)
+scale = Vector2(2.34535, 2.34535)
+texture = ExtResource("27_liyh8")
+region_enabled = true
+region_rect = Rect2(65, 48, 28, 48)
+
+[node name="Page5" type="Control" parent="GameGuide/NinePatchRect"]
+visible = false
+anchors_preset = 0
+offset_left = 3.0
+offset_top = -20.0
+offset_right = 43.0
+offset_bottom = 20.0
+mouse_filter = 1
+
+[node name="End" type="RichTextLabel" parent="GameGuide/NinePatchRect/Page5"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 53.0
+offset_right = 1064.0
+offset_bottom = 172.0
+theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
+theme_override_fonts/normal_font = ExtResource("11_h1lvl")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "You can mark your suspects if your not sure so you don't lose track of them. Remember, you are only allowed 3 failed attempts before we'll have to pull you back in, So make your decisions wisely. If you need more intel you can ask me by clicking the     icon. Good luck agent!"
+
+[node name="Sprite2D5" type="Sprite2D" parent="GameGuide/NinePatchRect/Page5"]
+position = Vector2(188, 150)
+scale = Vector2(2.375, 2.375)
+texture = ExtResource("25_u70qi")
+
+[node name="Control" type="Control" parent="GameGuide"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 649.0
+mouse_filter = 1
 
 [connection signal="pressed" from="LevelDoneOverlay/LevelDoneBox/retry" to="LevelDoneOverlay" method="_on_retry_pressed"]
-[connection signal="pressed" from="GameGuide/NinePatchRect/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="LevelDoneOverlay/LevelDoneBox/level_select" to="LevelDoneOverlay" method="_on_level_select_pressed"]
+[connection signal="gui_input" from="GameGuide/Control" to="." method="_on_control_gui_input"]

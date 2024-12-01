@@ -58,58 +58,61 @@ func _process(delta):
 			paused_time = 0
 
 func _physics_process(_delta):
-	if $NPCChar.is_talking:
-		change_anim_from_vec(Vector2i(0,0))
-		return
-	if $NPCChar.is_anxious:
-		if $NPCChar.near_player:
-			var x_val = 0
-			var y_val = 0
-			if player.global_position.x < global_position.x:
-				x_val = 1
-			elif player.global_position.x > global_position.x:
-				x_val = -1
-			if player.global_position.y < global_position.y:
-				y_val = 1
-			elif player.global_position.y > global_position.y:
-				y_val = -1
-			movement_target_position = global_position + Vector2i(x_val,y_val) * movement_len
-			set_movement_target(movement_target_position)
-			
-			
-	
-	if $NPCChar.near_player and !$NPCChar.is_anxious:
-		change_anim_from_vec(Vector2i(0,0))
-		return
+	if !npc_char.is_dead:
+		if $NPCChar.is_talking:
+			change_anim_from_vec(Vector2i(0,0))
+			return
+		if $NPCChar.is_anxious:
+			if $NPCChar.near_player:
+				var x_val = 0
+				var y_val = 0
+				if player.global_position.x < global_position.x:
+					x_val = 1
+				elif player.global_position.x > global_position.x:
+					x_val = -1
+				if player.global_position.y < global_position.y:
+					y_val = 1
+				elif player.global_position.y > global_position.y:
+					y_val = -1
+				movement_target_position = global_position + Vector2i(x_val,y_val) * movement_len
+				set_movement_target(movement_target_position)
+				
+				
 		
-	if navigation_agent.is_navigation_finished() or cancel_move:
-		handle_stop()
-		if (!is_paused):
-			var mov_vec = get_random_dir()
-			movement_target_position = global_position + mov_vec * movement_len
-			set_movement_target(movement_target_position)
-			cancel_move = false
-		return
+		if $NPCChar.near_player and !$NPCChar.is_anxious:
+			change_anim_from_vec(Vector2i(0,0))
+			return
+			
+		if navigation_agent.is_navigation_finished() or cancel_move:
+			handle_stop()
+			if (!is_paused):
+				var mov_vec = get_random_dir()
+				movement_target_position = global_position + mov_vec * movement_len
+				set_movement_target(movement_target_position)
+				cancel_move = false
+			return
 
-	var current_agent_position: Vector2 = global_position
-	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
+		var current_agent_position: Vector2 = global_position
+		var next_path_position: Vector2 = navigation_agent.get_next_path_position()
 
-	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
-	change_anim_from_vec(velocity)
-	move_and_slide()
-	var col_count = get_slide_collision_count()
-	if col_count > 0:
-		cancel_move = true
+		velocity = current_agent_position.direction_to(next_path_position) * movement_speed
+		change_anim_from_vec(velocity)
+		move_and_slide()
+		var col_count = get_slide_collision_count()
+		if col_count > 0:
+			cancel_move = true
 
 func die() -> void:
 	npc_died.emit(npc_char.is_spy)
 	npc_char.is_dead = true
-	queue_free()
-
-func toggle_talk() -> void:
-	npc_char.is_talking = !npc_char.is_talking
+	animated_sprite_2d.animation = "die"
+	animated_sprite_2d.position += Vector2(0, 30) 
+	$CollisionShape2D.disabled = true
+	self.z_index = -1
 	
-
+func set_talk(val:bool) -> void:
+	npc_char.is_talking = val
+	
 func get_random_dir():
 	var possible_vectors: Array = [Vector2i(0,1), Vector2i(0,-1), Vector2i(1,0), Vector2i(-1,0)]
 	var rand_num = rng.randi_range(0, 3)

@@ -122,7 +122,6 @@ func hide_overlay() -> void:
 	$mark.visible = false
 	close_overlay.emit(npc_id)
 
-
 func _on_mark_pressed() -> void:
 	hide_overlay()
 	is_active = false

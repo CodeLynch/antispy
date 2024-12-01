@@ -10,7 +10,7 @@ class_name NPCChar
 @export var heart_rate: int 
 @export var portrait_texture: String 
 @export var role_no: int
-@export var is_talking: bool
+@export var is_talking: bool = false
 @export var is_dead:bool
 @onready var player: CharacterBody2D = get_parent().get_parent().get_parent().get_node("Player")
 

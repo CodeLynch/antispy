@@ -133,10 +133,10 @@ offset_bottom = 115.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="HintActive"]
 layout_mode = 0
-offset_left = 81.0
+offset_left = 107.0
 offset_top = -15.0
-offset_right = 445.0
-offset_bottom = 71.0
+offset_right = 562.0
+offset_bottom = 99.0
 texture = ExtResource("3_egbbk")
 region_rect = Rect2(0, 0, 16, 16)
 patch_margin_left = 3
@@ -146,18 +146,18 @@ patch_margin_bottom = 3
 
 [node name="HintText" type="RichTextLabel" parent="HintActive"]
 layout_mode = 0
-offset_left = 89.0
-offset_top = -10.0
-offset_right = 439.0
-offset_bottom = 67.0
+offset_left = 115.0
+offset_top = -9.0
+offset_right = 556.0
+offset_bottom = 89.0
 theme_override_colors/default_color = Color(0.152941, 0.113725, 0.172549, 1)
 theme_override_fonts/normal_font = ExtResource("2_cx3o2")
 theme_override_font_sizes/normal_font_size = 32
 text = "Hint here...."
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HintActive"]
-position = Vector2(39, 28)
-scale = Vector2(2.6875, 2.6875)
+position = Vector2(51.5, 41.5)
+scale = Vector2(3.46875, 3.53125)
 sprite_frames = SubResource("SpriteFrames_t0vus")
 animation = &"idle"
 autoplay = "idle"
