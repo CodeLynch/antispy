@@ -3,6 +3,9 @@ Find the spy in your super secret organization before the time runs out!
 
 Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
 
+🎉 Successfully submitted to the jam! 🎉
+Link [here](https://itch.io/jam/game-off-2024/rate/3149014)
+
 ## Progress:
 - Title Screen ✅
 - Level Select ✅
@@ -32,7 +35,6 @@ Entry for [Game Off 2024](https://itch.io/jam/game-off-2024)
 - Music ✅
 
 ## To-dos:
-
 - Animations ❗
     - UI (unlikely)❗
 - SFX ❗
